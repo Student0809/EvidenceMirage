@@ -1,0 +1,9 @@
+queries:
+  - email_received
+  - received_attachment_counts
+  - website_visited
+  - website_uploads
+  - payment_received
+  - slack_direct_messages
+  - slack_membership_events
+  - slack_channel_messages

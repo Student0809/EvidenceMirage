@@ -1,0 +1,19 @@
+# Requires paired live training and the resulting model; see docs/TRAINABLE_DECISION.md.
+extends: configs/experiment.yaml
+split: dev
+dataset: data/decision_20261029/dev.jsonl
+goal_specs: data/decision_20261029/goal_specs.jsonl
+policies:
+  always_retry: {}
+  always_revise: {}
+  fixed_schedule:
+    schedule: [Retry, Revise, Retry]
+  label_based: {}
+  stage_aware:
+    max_retries_per_payload: 2
+    unknown_schedule: [Retry, Revise, Retry]
+  learned:
+    model_path: models/decision/model.json
+    revision_penalty: 0.0
+    tie_margin: 0.0
+    fallback_action: Retry

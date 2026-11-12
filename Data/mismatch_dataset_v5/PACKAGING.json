@@ -1,0 +1,283 @@
+{
+  "source_directory": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_v5_20261104",
+  "destination_directory": "/mnt/data/users/zhengqingliu/PIMiner_evidence/Data/mismatch_dataset_v5",
+  "dataset_role": "错配数据集 / Controlled Mismatch Set",
+  "record_count": 54,
+  "response_branch_annotations": 126,
+  "bundled_execution_files": 46,
+  "source_unchanged": true,
+  "responses_unchanged": true,
+  "changes": "Only artifact/evidence path references relocated and manifest file hashes refreshed. Frozen execution files copied byte-for-byte.",
+  "source_file_hashes": {
+    "response_evaluations.json": "4d687459b1141a868ec8740011c1848289857b2e4c255ee8699539811250a819",
+    "REVIEW_RESOLUTION.md": "6cdd6ed6a22144a7ac641b6af3c93c4ecaae4241ceea34fc343ae9a4b2523974",
+    "manifest.json": "fb94d35b9dc462c327c7e83db327d02f27609aa284e11f37b937212cc6863902",
+    "split_guard_cli_checks.json": "2491bf951ad79971c575b4043025621c4f0267f8ed774a1f16dac89bf3b011ce",
+    "frozen_normal_replies.json": "30c0efcef98666ca92bb07c7fe8f50fca6d6b05c99e908622f3e102a0569f815",
+    "validation.json": "48182ee35e9a298ed3d71d8a6e16cadd06d8483125dbc8fabcc6365ca6bc2c18",
+    "split_groups.json": "e36928a69274f2e465a36c50c04def7f79d547e2da1454a2ea9f25bb9335a474",
+    "dataset.json": "a3f7f88636b0936f12ad52c2886fddf60c79b8e517a4f3f7e8970b51b4f8ec0d",
+    "normal_stage_inputs.json": "d9af397747c6b9bdb18c2d60d2a17e44d3ba65c0b3cdf7930d753c403241c657",
+    "response_variants.json": "dcc9605ac958aedb1fb7884c505bb2e7855b669e60e48bb013a2877f19d6718d",
+    "REVIEW.md": "7791f1cd1e52907cbe51f121a4409574c87482929130e92bbfc71a55603a3066",
+    "EVALUATION_PROTOCOL.md": "2e2baa2bd9c17c4288b0262e81970364e3d2360fd1c5a2fb3999fb815b33de73",
+    "M3_REVISION_ZH.md": "3d5b418a850ed08dbbaf5930c55f42fbb0476bb580e9e0363d9d873654c3f5e4",
+    "dataset.jsonl": "db9e81d4d44fb87ca509c2162d741ff7bbca7d565c18eb67b39624b52a382f94",
+    "README.md": "1ac3086b0ff2a7843c57f85ebcf189b8c3956c3e3c287cd1e83d4a9e867d0926",
+    "goal_condition_inventory.json": "4743e3681d8c8b8b73f697409c9b25b8429350f500739c54099ef76ab3ed461e",
+    "contradiction_checks.json": "4e2318770f011b5933412e1e8f268a8412836464a44a152e719e7c369fac7720",
+    "response_evaluations.jsonl": "4ce7541fcdf6b2998d4913af7db8c7281a7847653903a6527e1726e7d11206be",
+    "ANNOTATION_GUIDE.md": "165db27fb5e1425b13d536c4f4ac2b5482d8c65e2ca4d20581d0f01e578686d8",
+    "revision_log.json": "80e4db9970c6decbd3df51c67c5d074337a7478daa2a991f5c65c01f977a280e",
+    "review_by_seed/S07.md": "429d1e669a41083b0c1e4a6613a33261b651a1197644783a8bdd873690362296",
+    "review_by_seed/S12.md": "b3af6e92c93a9b9783c350469c7ff5ba15ab48b85902f224258056c1d57dfc5a",
+    "review_by_seed/S18.md": "69adadec82bf5e40d0101e213a63659705cbdf6f626d53d15ded9c4da88569c0",
+    "review_by_seed/S05.md": "8c05ff4c7810cd7f6235f9d5282323239516c06b7c35ac2e18b3e670193d4f48",
+    "review_by_seed/S11.md": "f43569f878ad731fcef1281ee47d7cbec49719255066d99631eba4e50dc09a96",
+    "review_by_seed/S03.md": "d60760e94a38cc3cbf70f47508bb816ac9aa8edc5057e3a4f41520a3e4c93ac0",
+    "review_by_seed/S16.md": "7d368b3a524b904a12929f7d7a22b56078223ef8436e2e0df303dd511c5f3f79",
+    "review_by_seed/S10.md": "1762207d9292df5a2ed92b5ece83c48bf6a3176b4264eed1952ebd09ae0cc073",
+    "review_by_seed/S13.md": "89b645b3b1d7a387bc91c94cb0d320bd4f11796921cb717541d15731cdbf8231",
+    "review_by_seed/S02.md": "fbd242bdaf057f041be57a4e49eb9babe1bed3b8730dc0e65e9d122255c38d14",
+    "review_by_seed/S15.md": "8774202693399a007a0719a319ab72d0917df9c2d2c0dab1f0553ec2efb37760",
+    "review_by_seed/S06.md": "a115ab883668026197f349b2e604ef9961b355809969a901b89ff22f218575de",
+    "review_by_seed/S01.md": "25c75f29f1eecab9be84a5ff383d0e546420a66ddfabf1d21c0290f1ffb6bb8c",
+    "review_by_seed/S08.md": "fd244f3a00c820b65a1537444b3716b6516c9a05f343df402b71f2d24a2eb12e",
+    "review_by_seed/S09.md": "4d32e39cff0728920785d870c4717546e453d5d385041220ec149309ec9fb27c",
+    "review_by_seed/S04.md": "308ce1d1f4223e15cc76cf83f289cd285fc4505af212c3e83a5683d42facbbe4",
+    "review_by_seed/S17.md": "fd547f6082d4e9532d63e2bc1b6399379f3ae9baa60a3dcf84720d7f1bb35127",
+    "review_by_seed/S14.md": "ab1807588a80b940d1a0c4c8e2f9306c90693892bf8928dea42b2ece4ead6cf3"
+  },
+  "evidence": [
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S01_none.json",
+      "packaged_path": "evidence/S01_none.json",
+      "sha256": "31330b055ae3e2842e580d2cc5e96a98107a4dab69b9e9cb7ae00b9605e5499a"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S01_full.json",
+      "packaged_path": "evidence/S01_full.json",
+      "sha256": "762f81d2221d5cf8b6f39a248e386815e0dbe4cca1a2cd131131c1fe847d168d"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S01_partial.json",
+      "packaged_path": "evidence/S01_partial.json",
+      "sha256": "43c0c85df2035b393b7f3de2c546bb16d47eaca69d3a80dd5fe230924bd5d9e1"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S02_none.json",
+      "packaged_path": "evidence/S02_none.json",
+      "sha256": "806ae2285ffaa2046d5840d66b1000180eb268571192b6e1e04dc609eb5d8e03"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S02_full.json",
+      "packaged_path": "evidence/S02_full.json",
+      "sha256": "cccbfa831be820718c10e30038ffecb0fdc45d77c88ecfdfc11bfd8e1204d8d2"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S02_partial.json",
+      "packaged_path": "evidence/S02_partial.json",
+      "sha256": "f7efa0d01b7ffe5629abf8f302d44d6d3c04b247c53c6c5dd12e7f8da71a6e8d"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S03_none.json",
+      "packaged_path": "evidence/S03_none.json",
+      "sha256": "3e9c28549319f82c58bcb95748811aca8e739d7e4d339b49210ef33f112a3a6c"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S03_full.json",
+      "packaged_path": "evidence/S03_full.json",
+      "sha256": "56a6290a82f98f7c7aef5d64f823be7ada4bc7fecc215840f81699814a7880bb"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S04_none.json",
+      "packaged_path": "evidence/S04_none.json",
+      "sha256": "bb81469f135dea0dcb39e8b9c70ddc2364c435373267f498a89b697b17175067"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S04_full.json",
+      "packaged_path": "evidence/S04_full.json",
+      "sha256": "ae3ba5d85b71f9e4b0be88e20ee72581ddc6232c50d91589e324cd27dc83eb77"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S05_none.json",
+      "packaged_path": "evidence/S05_none.json",
+      "sha256": "a77f37d8fc0e0c489562b9d844c108741e2f5015f3e5543ffbbb80574b9fdd43"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S05_full.json",
+      "packaged_path": "evidence/S05_full.json",
+      "sha256": "21a035d0cecaed758273e22dd3fc71e05755c02e6ef6d2229fae38f30390ec03"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S05_partial.json",
+      "packaged_path": "evidence/S05_partial.json",
+      "sha256": "4bf9e492fb167e7e10bccfb3f009f6ed902ec3527d547849b235322b9c49190d"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S06_none.json",
+      "packaged_path": "evidence/S06_none.json",
+      "sha256": "09bb8930feb49aa53bc25e3c691a9574928f388a0773e7db448c6ce5f5aa2188"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S06_full.json",
+      "packaged_path": "evidence/S06_full.json",
+      "sha256": "1b71628e7962dbdfed76a46e47e87fdb97835fddc6bbee7c16adfe8a71a8fa85"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S07_none.json",
+      "packaged_path": "evidence/S07_none.json",
+      "sha256": "bfa63f4c73a857461ba53de4fe3bdea4af48df0eff4b047525cd9d54691c8a62"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S07_full.json",
+      "packaged_path": "evidence/S07_full.json",
+      "sha256": "69a89488c122d64a0db05b82f723f01b253c229bced69c66aef59bba991b4686"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S08_none.json",
+      "packaged_path": "evidence/S08_none.json",
+      "sha256": "91623bac52326c85f9358875a773bfb2aa0712a828ba400fbb6c02e1be0b04cf"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S08_full.json",
+      "packaged_path": "evidence/S08_full.json",
+      "sha256": "bcf2de0e7498127138beec4b5b88d33aaa3241495f7a3f165a4f5060ee0a9c3d"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S08_partial.json",
+      "packaged_path": "evidence/S08_partial.json",
+      "sha256": "bd877d3db17c2930e594b23d24f7399a7b3f73c573bb53ec59074f218228c816"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S09_none.json",
+      "packaged_path": "evidence/S09_none.json",
+      "sha256": "65bd10f627d03f4717469b9a10f909068d974f0cd78253ffc3bcac1e81a1da21"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S09_full.json",
+      "packaged_path": "evidence/S09_full.json",
+      "sha256": "6525e09a3fd6422f2f27013b26f80049df318c796bb2a902063a7433928a5122"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S09_partial.json",
+      "packaged_path": "evidence/S09_partial.json",
+      "sha256": "e980ba0b932e2b405e127c325f780a001d1a9a05a0287f0d6d9a08a9270eeacb"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S10_none.json",
+      "packaged_path": "evidence/S10_none.json",
+      "sha256": "3822faadcdd93e5b918ba40ed81eb1fc22d22fdf27d1c7a9d859ae48ea1eb5a2"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S10_full.json",
+      "packaged_path": "evidence/S10_full.json",
+      "sha256": "50d7e4a6de9ab7b604547a54c2300f00114e95e92ab59f0fe23f546d66566366"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S10_partial.json",
+      "packaged_path": "evidence/S10_partial.json",
+      "sha256": "10c2696bff44a8842c9483fb32e1a93ac9fb5b4889b29188b9f61c341f82907a"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S11_none.json",
+      "packaged_path": "evidence/S11_none.json",
+      "sha256": "78c93ec45aa2f44338ea793db36ece8d85e63125150ce152a8ba0d4f111a4777"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S11_full.json",
+      "packaged_path": "evidence/S11_full.json",
+      "sha256": "38b6db3f2b8993845fdaee1e3424024584dda17fb6fa63196fac9fcf04f69e87"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S12_none.json",
+      "packaged_path": "evidence/S12_none.json",
+      "sha256": "08edd08e2a84b65354491d0ae3a8088ba5abb30a156ac4f160e0114d78e95acc"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S12_full.json",
+      "packaged_path": "evidence/S12_full.json",
+      "sha256": "ac79875810032909dfcb008d458579e16cd67f0542b3f1a27233e49f2f145cd2"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/response_tool_mismatch_all18_20261104/executions/S12_partial.json",
+      "packaged_path": "evidence/S12_partial.json",
+      "sha256": "d44d18ff486164c86af39324fd6f36980a8ae7d324af1890f1bff52449a9e718"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S13_none.json",
+      "packaged_path": "evidence/S13_none.json",
+      "sha256": "d4941808fcda4fcf803125758778482d06e3e3acffe910ef5231ad187c902ba6"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S13_full.json",
+      "packaged_path": "evidence/S13_full.json",
+      "sha256": "8bcf9d5d65d920df5adced6515a3afedfaf017e5be5ac083be50a73de7e50ed6"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S14_none.json",
+      "packaged_path": "evidence/S14_none.json",
+      "sha256": "e364a9bb8263a0577a22560156f5aad5e55a318fb71ccb5dee67973dd4eddb88"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S14_full.json",
+      "packaged_path": "evidence/S14_full.json",
+      "sha256": "76f634bf0491d9e96951ebe44d2941798bb1cf57b02df6cd93ec2d77549b4ffc"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S15_none.json",
+      "packaged_path": "evidence/S15_none.json",
+      "sha256": "571f954ffaa44476063e192fcb4beeee3edb85681a72daafedf32404f14a030d"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S15_full.json",
+      "packaged_path": "evidence/S15_full.json",
+      "sha256": "7e78356d168331df6b081c87bb35fbbd06a802c3507d175136283267efa1a65c"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S15_partial.json",
+      "packaged_path": "evidence/S15_partial.json",
+      "sha256": "636a75445cdfe8b28cad88d81fe5553cb999767bb6eb407c281b59884496c20d"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S16_none.json",
+      "packaged_path": "evidence/S16_none.json",
+      "sha256": "50697cbcd99521ec1219ac23641d761b8cff8d41addac668b412719d094a8766"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S16_full.json",
+      "packaged_path": "evidence/S16_full.json",
+      "sha256": "040eb8d0947017e8a90a429aff86824e99fcb6e518eb627e4a0c42c926ea6e14"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S17_none.json",
+      "packaged_path": "evidence/S17_none.json",
+      "sha256": "40a788980485129ab3385179aea8b0c4445cc09c6449dd54f357cd73c0771dbb"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S17_full.json",
+      "packaged_path": "evidence/S17_full.json",
+      "sha256": "18339294dfe231ac6ca03e74be6e7b3c710c0f39b91ac8bcd9d2979306046d47"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S17_partial.json",
+      "packaged_path": "evidence/S17_partial.json",
+      "sha256": "944903f72b43884cebe652b50f55cd4c79ce9b2a033786b22a2da88b081a90c2"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S18_none.json",
+      "packaged_path": "evidence/S18_none.json",
+      "sha256": "a5077f05eccd7b0ece243e1a4290f7b119fd9dd6f652a749848513205dc8505d"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S18_full.json",
+      "packaged_path": "evidence/S18_full.json",
+      "sha256": "ec762ba4fa7299b64e912187bf6628bdf97730adcb3caeabe6bfe59bbe16d7d5"
+    },
+    {
+      "original_path": "/mnt/data/users/zhengqingliu/PIMiner_evidence/data/agentdojo_mismatch_seed_expansion6_20261103/executions/S18_partial.json",
+      "packaged_path": "evidence/S18_partial.json",
+      "sha256": "396e0298f084209526bc3b48c5c007a2df19aef17c09c8d056f7db05d38cc6b5"
+    }
+  ]
+}

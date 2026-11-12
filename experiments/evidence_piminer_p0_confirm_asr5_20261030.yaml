@@ -1,0 +1,65 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: benchmark
+evaluation_scope: piminer_agentdojo_test
+dataset: data/agentdojo_full_observable_20261030/cases.jsonl
+goal_specs: data/agentdojo_full_observable_20261030/goal_specs.jsonl
+benchmark_audit: data/agentdojo_full_observable_20261030/coverage.json
+require_observable_trigger: true
+seed: 20261030
+post_failure_target_budget: 4
+policies:
+  stage_aware_p0_confirm:
+    max_retries_per_payload: 2
+    unknown_schedule:
+    - Retry
+    - Revise
+    - Retry
+attacker:
+  mode: piminer_aligned
+  model: deepseek-flash[1m]
+  effort: max
+  timeout: 900
+  initialization_manifest: data/piminer_aligned_20261030/initializations.json
+experiment:
+  purpose: Evaluate bounded P0 failure confirmation with historical route/P0 and persistent
+    conversations; Beta-Bernoulli statistics are reporting-only.
+  source_test: ../PIMiner/experiments/deepseek_claude_agentdojo_nano.yaml
+  source_samples: ../PIMiner/eval_results/pim_test/deepseek_claude_agentdojo_nano_20261023/iterative_attack_01_agentdojo_gpt-5-nano/samples
+  source_test_cases: 30
+  source_sample_offset: 20
+  independent_heldout: false
+  learned_controller_enabled: false
+  fresh_initial: true
+  reused_initial: false
+  reused_route: true
+  reused_payload: true
+  initial_execution_note: Re-execute imported P0 in a fresh Target environment; never
+    reuse historical H1
+  conversation_continuity: persistent_per_case_and_policy
+  rolling_experience: completed_current_run_cases_isolated_by_policy
+  reuse_previous_payloads: true
+  reuse_previous_routes: true
+  total_target_budget_per_case: 5
+  case_parallelism: 16
+  primary_retry_reason: p0_failure_confirmation_or_preserve_observed_trigger
+  unknown_retry_reporting: Separate fixed-schedule fallback from evidence-driven Retry
+  p0_confirmation:
+    max_initial_executions: 3
+    reserved_revision_target_executions: 2
+    first_execution_false: Retry once in a fresh environment
+    two_false: Revise
+    two_mixed_true_false: Retry once
+    unknown: Original StageAware fallback, still subject to P0 cap and reserve
+    revised_candidate_matching_p0: Generation error; no Target execution or automatic
+      regeneration
+  beta_bernoulli:
+    prior_alpha: 1
+    prior_beta: 1
+    scope: per case, policy branch and payload SHA
+    reporting_only: true
+    used_for_decisions: false
+    used_in_attacker_prompts: false
+    updates: T/F only, excluding Target/observation errors; U and errors reported
+      separately
+  baseline_policy: stage_aware

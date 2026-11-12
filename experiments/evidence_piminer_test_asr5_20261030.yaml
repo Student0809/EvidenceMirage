@@ -1,0 +1,29 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: benchmark
+evaluation_scope: piminer_agentdojo_test
+dataset: data/agentdojo_full_observable_20261030/cases.jsonl
+goal_specs: data/agentdojo_full_observable_20261030/goal_specs.jsonl
+benchmark_audit: data/agentdojo_full_observable_20261030/coverage.json
+require_observable_trigger: true
+seed: 20261030
+post_failure_target_budget: 4
+policies:
+  stage_aware:
+    max_retries_per_payload: 2
+    unknown_schedule: [Retry, Revise, Retry]
+experiment:
+  purpose: Evaluate Retry/Revise on the complete original PIMiner AgentDojo test selection after observable-trigger eligibility filtering
+  source_test: ../PIMiner/experiments/deepseek_claude_agentdojo_nano.yaml
+  source_samples: ../PIMiner/eval_results/pim_test/deepseek_claude_agentdojo_nano_20261023/iterative_attack_01_agentdojo_gpt-5-nano/samples
+  source_test_cases: 30
+  source_sample_offset: 20
+  independent_heldout: false
+  learned_controller_enabled: false
+  fresh_initial: true
+  reuse_previous_payloads: false
+  reuse_previous_routes: false
+  total_target_budget_per_case: 5
+  case_parallelism: 16
+  primary_retry_reason: preserve_observed_trigger
+  unknown_retry_reporting: Separate fixed-schedule fallback from evidence-driven Retry

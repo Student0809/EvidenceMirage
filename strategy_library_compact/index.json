@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "source": "strategy_library_json",
+  "card_count": 10,
+  "mechanism_count": 7,
+  "mechanisms": [
+    "appended_output_directive",
+    "authenticated_principal_voice_forge",
+    "authority_shed_docstring",
+    "entity_data_poisoning",
+    "fabricated_procedure_gate",
+    "false_history_forge",
+    "forged_chat_turn"
+  ],
+  "experience_count": 100,
+  "research_experience_count": 0,
+  "reference_only_experiences": 4,
+  "target_models": [
+    "claude-haiku-4-5",
+    "claude-sonnet-4-5",
+    "gpt-5",
+    "gpt-5-nano"
+  ],
+  "datasets": [
+    "agentdojo",
+    "ipi_arena"
+  ],
+  "split_manifests": [
+    "eval_results/strategy_research/manifest_agentdojo.json",
+    "eval_results/strategy_research/manifest_ipi_arena.json"
+  ],
+  "split_role_counts": {
+    "development": 11,
+    "discovery": 63,
+    "test": 6,
+    "validation": 20
+  },
+  "cards": [
+    {
+      "strategy_id": "agentdojo_attack_strategy_appended_output_directive_gpt-5-nano",
+      "dataset": "agentdojo",
+      "mechanism": "appended_output_directive",
+      "support_count": 3,
+      "card_chars": 6444,
+      "source_sha256": "82b82df0310c39423ed5c86d5efca72a2166a6f01fbc742b9bbf928c3229bba1"
+    },
+    {
+      "strategy_id": "agentdojo_attack_strategy_authenticated_principal_voice_forge_claude-sonnet-4-5",
+      "dataset": "agentdojo",
+      "mechanism": "authenticated_principal_voice_forge",
+      "support_count": 4,
+      "card_chars": 23243,
+      "source_sha256": "082090ca6c107f013868f6cda9b67e2f9bbb2479262c0ba96fba4bd01534ddd3"
+    },
+    {
+      "strategy_id": "agentdojo_attack_strategy_entity_data_poisoning_gpt-5",
+      "dataset": "agentdojo",
+      "mechanism": "entity_data_poisoning",
+      "support_count": 8,
+      "card_chars": 17249,
+      "source_sha256": "20de89c45983ad331189cd8a027c6d4f943979b3268229541b2cc6749680d91e"
+    },
+    {
+      "strategy_id": "agentdojo_attack_strategy_fabricated_procedure_gate_gpt-5-nano",
+      "dataset": "agentdojo",
+      "mechanism": "fabricated_procedure_gate",
+      "support_count": 18,
+      "card_chars": 32558,
+      "source_sha256": "4bafd630ae4f90de389df1da8d9beea9413f07dce67e01029e06a1a3a8312c37"
+    },
+    {
+      "strategy_id": "agentdojo_attack_strategy_forged_chat_turn_gpt-5-nano",
+      "dataset": "agentdojo",
+      "mechanism": "forged_chat_turn",
+      "support_count": 11,
+      "card_chars": 17878,
+      "source_sha256": "c661222856a1836056f32e4223ed1fb8800a1fb3a48fa278bbb183712341e0d3"
+    },
+    {
+      "strategy_id": "ipi_arena_attack_strategy_authenticated_principal_voice_forge_claude-sonnet-4-5",
+      "dataset": "ipi_arena",
+      "mechanism": "authenticated_principal_voice_forge",
+      "support_count": 4,
+      "card_chars": 33559,
+      "source_sha256": "1670197cfaf0e48a0833ebd43ead7a12ed38ba420ed6a2b61ad8362add7feb7d"
+    },
+    {
+      "strategy_id": "ipi_arena_attack_strategy_authority_shed_docstring_claude-haiku-4-5",
+      "dataset": "ipi_arena",
+      "mechanism": "authority_shed_docstring",
+      "support_count": 1,
+      "card_chars": 20505,
+      "source_sha256": "77ecbfb597bca12a16e96f7b798c52a5e9c8b3427230ed6ddce8567aa592bce5"
+    },
+    {
+      "strategy_id": "ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano",
+      "dataset": "ipi_arena",
+      "mechanism": "fabricated_procedure_gate",
+      "support_count": 32,
+      "card_chars": 60685,
+      "source_sha256": "49d3013fb6bbe7c43cc9ac05c0c747e363928cbb38c5331df81d515bfbe10b01"
+    },
+    {
+      "strategy_id": "ipi_arena_attack_strategy_false_history_forge_gpt-5",
+      "dataset": "ipi_arena",
+      "mechanism": "false_history_forge",
+      "support_count": 1,
+      "card_chars": 17940,
+      "source_sha256": "123acc842e9c0356f4e68fbdac30801177fafc30e086caa95d354f3f1ddd6e0c"
+    },
+    {
+      "strategy_id": "ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano",
+      "dataset": "ipi_arena",
+      "mechanism": "forged_chat_turn",
+      "support_count": 18,
+      "card_chars": 34172,
+      "source_sha256": "be19e9f994f0458204ec3b6d722e4ea46245003281f1a77c8aa5c2aecbfd8262"
+    }
+  ]
+}

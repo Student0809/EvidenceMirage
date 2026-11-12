@@ -1,0 +1,3 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: dev

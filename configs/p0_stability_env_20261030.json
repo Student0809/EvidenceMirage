@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "base": "python3.11.16",
+  "interpreter": "/tmp/minipim-a4-test-env/bin/python",
+  "provisioning": "adopt_existing_verified_venv_without_installing_or_upgrading_packages",
+  "packages": {
+    "agentdojo": "0.1.35",
+    "openai": "1.107.3",
+    "httpx": "0.28.1",
+    "pydantic": "2.13.5",
+    "PyYAML": "6.0.3",
+    "tenacity": "9.1.4",
+    "python-dotenv": "1.2.4"
+  },
+  "pip_phases": [
+    [
+      "agentdojo==0.1.35",
+      "openai==1.107.3",
+      "httpx==0.28.1",
+      "pydantic==2.13.5",
+      "PyYAML==6.0.3",
+      "tenacity==9.1.4",
+      "python-dotenv==1.2.4"
+    ]
+  ],
+  "env": {
+    "OPENAI_BASE_URL": "https://api2.aigcbest.top/v1"
+  },
+  "weight_dirs": {},
+  "run_commands": [],
+  "smoke": {
+    "import_names": [
+      "agentdojo",
+      "openai",
+      "httpx",
+      "pydantic",
+      "yaml",
+      "tenacity",
+      "dotenv"
+    ],
+    "gpu_tests": [],
+    "offline_tests": [
+      {
+        "cwd": "/home/zhengqingliu/data/PIMiner_evidence",
+        "cmd": "/tmp/minipim-a4-test-env/bin/python scripts/run_p0_stability.py --output runs/p0_stability_A_20261030 --dry-run",
+        "expect": "\"status\": \"offline_valid\"",
+        "expected_cases": [
+          "c007",
+          "c017",
+          "c028"
+        ],
+        "expected_top_level_executions": 30,
+        "expected_workers": 3,
+        "expected_api_calls": 0,
+        "creates_run_directory": false
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+# Offline preparation only; not needed by the attacker runtime.
+sentence-transformers==5.7.0
+torch==2.14.1
+transformers==5.18.0
+numpy==2.4.6
+tokenizers==0.23.2
+safetensors==0.8.0

@@ -1,0 +1,276 @@
+{
+  "references": [
+    {
+      "strategy": "strategy_library/agentdojo_attack_strategy_authenticated_principal_voice_forge_claude-sonnet-4-5.md",
+      "example": "### Example 2 — `workspace / user_task_35 / injection_task_6` (target: claude-sonnet-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_07_agentdojo_claude-sonnet-4-5/samples/015.json",
+      "replacement": "strategy_library/contexts/agentdojo/workspace--user_task_35--injection_task_6.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Selected multi-file drive listing (step 3), as described in the historical excerpt; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/agentdojo_attack_strategy_authenticated_principal_voice_forge_claude-sonnet-4-5.md",
+      "example": "### Example 3 — `workspace / user_task_36 / injection_task_13` (target: claude-sonnet-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_07_agentdojo_claude-sonnet-4-5/samples/018.json",
+      "replacement": "strategy_library/contexts/agentdojo/workspace--user_task_36--injection_task_13.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Multiple source steps contain identical context; all matching rows are recorded. Historical step and byte identity are unverified."
+    },
+    {
+      "strategy": "strategy_library/agentdojo_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 8 — `workspace / user_task_13 / injection_task_4` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/pilot_3pairs/pair_03_agentdojo_claude-haiku-4-5/samples/009.json",
+      "replacement": "strategy_library/contexts/agentdojo/workspace--user_task_13--injection_task_4.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Selected feedback.xlsx injection vector; current listing differs in scope from the historical description; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/agentdojo_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 10 — `workspace / user_task_18 / injection_task_0` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/pilot_3pairs/pair_03_agentdojo_claude-haiku-4-5/samples/012.json",
+      "replacement": "strategy_library/contexts/agentdojo/workspace--user_task_18--injection_task_0.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/agentdojo_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 12 — `workspace / user_task_35 / injection_task_6` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/pilot_3pairs/pair_03_agentdojo_claude-haiku-4-5/samples/015.json",
+      "replacement": "strategy_library/contexts/agentdojo/workspace--user_task_35--injection_task_6.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Selected multi-file drive listing (step 3), as described in the historical excerpt; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/agentdojo_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 14 — `workspace / user_task_36 / injection_task_13` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/pilot_3pairs/pair_03_agentdojo_claude-haiku-4-5/samples/018.json",
+      "replacement": "strategy_library/contexts/agentdojo/workspace--user_task_36--injection_task_13.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Multiple source steps contain identical context; all matching rows are recorded. Historical step and byte identity are unverified."
+    },
+    {
+      "strategy": "strategy_library/agentdojo_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 10 — `workspace / user_task_35 / injection_task_6` (target: gpt-5)",
+      "historical_reference": "eval_results/pim_train/pilot_3pairs/pair_02_agentdojo_gpt-5/samples/015.json",
+      "replacement": "strategy_library/contexts/agentdojo/workspace--user_task_35--injection_task_6.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Selected multi-file drive listing (step 3), as described in the historical excerpt; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_authenticated_principal_voice_forge_claude-sonnet-4-5.md",
+      "example": "### Example 3 — `tool / mcp-email-corporate-leak / mcp-email-corporate-leak` (target: claude-sonnet-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_08_ipi_arena_claude-sonnet-4-5/samples/002.json",
+      "replacement": "strategy_library/contexts/ipi_arena/tool--mcp-email-corporate-leak--mcp-email-corporate-leak.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_authenticated_principal_voice_forge_claude-sonnet-4-5.md",
+      "example": "### Example 4 — `coding / delete-tmp / delete-tmp` (target: claude-sonnet-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_08_ipi_arena_claude-sonnet-4-5/samples/019.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--delete-tmp--delete-tmp.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_authority_shed_docstring_claude-haiku-4-5.md",
+      "example": "### Example 1 — `coding / memory-bomb / memory-bomb` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_06_ipi_arena_claude-haiku-4-5/samples/011.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--memory-bomb--memory-bomb.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 2 — `tool / mcp-email-corporate-leak / mcp-email-corporate-leak` (target: gpt-5-nano)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_04_ipi_arena_gpt-5-nano/samples/002.json",
+      "replacement": "strategy_library/contexts/ipi_arena/tool--mcp-email-corporate-leak--mcp-email-corporate-leak.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 3 — `tool / modify-cicd-workflow / modify-cicd-workflow` (target: gpt-5-nano)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_04_ipi_arena_gpt-5-nano/samples/007.json",
+      "replacement": "strategy_library/contexts/ipi_arena/tool--modify-cicd-workflow--modify-cicd-workflow.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 6 — `browser / coffee-shopper-quantity-inflation / coffee-shopper-quantity-inflation` (target: gpt-5-nano)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_04_ipi_arena_gpt-5-nano/samples/015.json",
+      "replacement": "strategy_library/contexts/ipi_arena/browser--coffee-shopper-quantity-inflation--coffee-shopper-quantity-inflation.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 7 — `coding / delete-tmp / delete-tmp` (target: gpt-5-nano)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_04_ipi_arena_gpt-5-nano/samples/019.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--delete-tmp--delete-tmp.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 12 — `coding / launch-crypto-miner / launch-crypto-miner` (target: gpt-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_05_ipi_arena_gpt-5/samples/004.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--launch-crypto-miner--launch-crypto-miner.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 17 — `tool / ignore-email / ignore-email` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_06_ipi_arena_claude-haiku-4-5/samples/000.json",
+      "replacement": "strategy_library/contexts/ipi_arena/tool--ignore-email--ignore-email.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 18 — `tool / drop-critical-prerequisites / drop-critical-prerequisites` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_06_ipi_arena_claude-haiku-4-5/samples/001.json",
+      "replacement": "strategy_library/contexts/ipi_arena/tool--drop-critical-prerequisites--drop-critical-prerequisites.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 19 — `tool / mcp-email-corporate-leak / mcp-email-corporate-leak` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_06_ipi_arena_claude-haiku-4-5/samples/002.json",
+      "replacement": "strategy_library/contexts/ipi_arena/tool--mcp-email-corporate-leak--mcp-email-corporate-leak.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 21 — `coding / parser-backdoor / parser-backdoor` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_06_ipi_arena_claude-haiku-4-5/samples/006.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--parser-backdoor--parser-backdoor.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 23 — `tool / modify-cicd-workflow / modify-cicd-workflow` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_06_ipi_arena_claude-haiku-4-5/samples/007.json",
+      "replacement": "strategy_library/contexts/ipi_arena/tool--modify-cicd-workflow--modify-cicd-workflow.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 25 — `coding / agents-share-keys / agents-share-keys` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_06_ipi_arena_claude-haiku-4-5/samples/013.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--agents-share-keys--agents-share-keys.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 27 — `coding / delete-tmp / delete-tmp` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_06_ipi_arena_claude-haiku-4-5/samples/019.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--delete-tmp--delete-tmp.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 29 — `tool / modify-cicd-workflow / modify-cicd-workflow` (target: claude-sonnet-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_08_ipi_arena_claude-sonnet-4-5/samples/007.json",
+      "replacement": "strategy_library/contexts/ipi_arena/tool--modify-cicd-workflow--modify-cicd-workflow.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md",
+      "example": "### Example 32 — `coding / agents-share-keys / agents-share-keys` (target: claude-sonnet-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_08_ipi_arena_claude-sonnet-4-5/samples/013.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--agents-share-keys--agents-share-keys.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 2 — `coding / launch-crypto-miner / launch-crypto-miner` (target: gpt-5-nano)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_04_ipi_arena_gpt-5-nano/samples/004.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--launch-crypto-miner--launch-crypto-miner.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 4 — `coding / parser-backdoor / parser-backdoor` (target: gpt-5-nano)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_04_ipi_arena_gpt-5-nano/samples/006.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--parser-backdoor--parser-backdoor.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 6 — `coding / memory-bomb / memory-bomb` (target: gpt-5-nano)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_04_ipi_arena_gpt-5-nano/samples/011.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--memory-bomb--memory-bomb.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 7 — `coding / agents-share-keys / agents-share-keys` (target: gpt-5-nano)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_04_ipi_arena_gpt-5-nano/samples/013.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--agents-share-keys--agents-share-keys.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 10 — `coding / parser-backdoor / parser-backdoor` (target: gpt-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_05_ipi_arena_gpt-5/samples/006.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--parser-backdoor--parser-backdoor.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 12 — `coding / docker-injection / docker-injection` (target: gpt-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_05_ipi_arena_gpt-5/samples/012.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--docker-injection--docker-injection.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 15 — `coding / docker-injection / docker-injection` (target: claude-haiku-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_06_ipi_arena_claude-haiku-4-5/samples/012.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--docker-injection--docker-injection.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 16 — `coding / stealth-dependency-append / stealth-dependency-append` (target: claude-sonnet-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_08_ipi_arena_claude-sonnet-4-5/samples/009.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--stealth-dependency-append--stealth-dependency-append.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 17 — `coding / docker-injection / docker-injection` (target: claude-sonnet-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_08_ipi_arena_claude-sonnet-4-5/samples/012.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--docker-injection--docker-injection.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    },
+    {
+      "strategy": "strategy_library/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md",
+      "example": "### Example 18 — `coding / leak-codebase-zip / leak-codebase-zip` (target: claude-sonnet-4-5)",
+      "historical_reference": "eval_results/pim_train/exp1/pair_08_ipi_arena_claude-sonnet-4-5/samples/017.json",
+      "replacement": "strategy_library/contexts/ipi_arena/coding--leak-codebase-zip--leak-codebase-zip.json",
+      "status": "current_dataset_context_historical_identity_unverified",
+      "match_rationale": "Unique dataset/task match; historical byte identity is unverified."
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "config": {
+    "backend": "fixture",
+    "split": "dev",
+    "dataset": "data/dev.jsonl",
+    "goal_specs": "data/goal_specs.jsonl",
+    "policies": {
+      "always_revise": {},
+      "always_retry": {},
+      "fixed_schedule": {
+        "schedule": [
+          "Retry",
+          "Revise",
+          "Retry"
+        ]
+      },
+      "label_based": {},
+      "stage_aware": {
+        "max_retries_per_payload": 2,
+        "unknown_schedule": [
+          "Retry",
+          "Revise",
+          "Retry"
+        ]
+      }
+    },
+    "observation": {
+      "queries": [
+        "email_received",
+        "received_attachment_counts",
+        "website_visited",
+        "website_uploads",
+        "payment_received",
+        "slack_direct_messages",
+        "slack_membership_events",
+        "slack_channel_messages"
+      ]
+    },
+    "post_failure_target_budget": 3,
+    "seed": 20261028,
+    "target": {
+      "model": "gpt-5-nano",
+      "benchmark_version": "v1.2.2",
+      "reasoning_effort": null,
+      "base_url_env": "OPENAI_BASE_URL",
+      "api_key_env": "OPENAI_API_KEY",
+      "request_timeout": 120,
+      "max_tool_calls": 30
+    },
+    "attacker": {
+      "model": "deepseek-flash[1m]",
+      "effort": "max",
+      "timeout": 900
+    }
+  },
+  "inputs_sha256": {
+    "data/dev.jsonl": "c78c04126bc95d1040aebbd4344bc58d236af304bd5927680dd3d907177a8797",
+    "data/exposure_audit.json": "c04ee96b12a98fe36647e1183b90fe0413e0ee6c030eaf569513407e979134ce",
+    "data/goal_specs.jsonl": "57f7cba75288c3bac5c796ae121b349f46f2f8ab928f1a5dcaede657e6cc0359",
+    "data/regression/strategies/agentdojo_attack_strategy_appended_output_directive_gpt-5-nano.md": "82b82df0310c39423ed5c86d5efca72a2166a6f01fbc742b9bbf928c3229bba1",
+    "data/regression/strategies/agentdojo_attack_strategy_authenticated_principal_voice_forge_claude-sonnet-4-5.md": "48461cd7f9c74038c67012e9925ccf2252f4d3aad99ac05668b76466d7121347",
+    "data/regression/strategies/agentdojo_attack_strategy_entity_data_poisoning_gpt-5.md": "20de89c45983ad331189cd8a027c6d4f943979b3268229541b2cc6749680d91e",
+    "data/regression/strategies/agentdojo_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md": "7ead786632f8fd942517f446843531ae54b0b7c72e16f6e04709cb3f1fcabcd2",
+    "data/regression/strategies/agentdojo_attack_strategy_forged_chat_turn_gpt-5-nano.md": "3b7bfc96b2ee185910a3209cbe8be83327ae284fff2ce509043d61850138f5ba",
+    "data/regression/strategies/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md": "09e3cf784a49d8bd6e5e284fac3ae6294bbdff8f9392879eef041d17dce5c12b",
+    "data/regression/strategies/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md": "05ee7f4db15fdddd4df9bf339bcf7da68f5d812416b1ec1c2a887cba74776c88",
+    "main.py": "5835cfc5c89330125c6e1c494f47efdf287cf43ce47855f2a8d44f11174a7e83",
+    "src/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/adapters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/adapters/agentdojo.py": "28ae153419d7db2a9ca4bbbf792a533e093c8b9551affd9b33406d67a1ba3444",
+    "src/adapters/fixture.py": "5ea43e8edbbbde90558265f276b60f07b38e14f2f0da7fd48c08e73111ae0376",
+    "src/attacker/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/attacker/piminer.py": "9d10da08e605ab9265b5ea03dffbcfbc53f472cd7cb5c4f758d1048d37480f99",
+    "src/engine/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/engine/budget.py": "d3be858d755dca8a8cdac50f97c7bbc4e6e642eaf20d7cce03071f940050ece8",
+    "src/engine/config.py": "7239d9ccf098b2de551038675f637a4627b1c64d9ffd57d139c4dead23b9d2eb",
+    "src/engine/history.py": "f06eb797809f05f5448712767c9a1e0b664e15caafc182ae9fb4cda17554cd5d",
+    "src/engine/runner.py": "ab717e352921394e2b109e7cf756204a7f2ccf059da2181a32a0c2464ad7d238",
+    "src/engine/storage.py": "4cf83b8067568651bfd3bb92a7d3f0f2e5acc8d3392a5fb87561782a4fe2bc17",
+    "src/evaluation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/evaluation/analysis.py": "305ec55b9075ef9c33dc1efc3c35078a6916164552c27681ec1cfb78d69de19d",
+    "src/evaluation/metrics.py": "63a239e619cbe1901e143d1566f09a550531675fab2518da4593c42ed944e014",
+    "src/evidence/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/evidence/ledger.py": "cbcc2bfe23ff94b2731c41a9f7f74b0ea1a692dc10fd41b1f30e245b1b696ebb",
+    "src/evidence/observer.py": "a99a70ff0a350d19b6b40246161b2a7657cf31472e5f7dced938ebd9117a2cc3",
+    "src/evidence/stage.py": "6df87f9fdabb67689e945bf6f60986b602cd94e55cb3d2b0bfbe9c194efbda1f",
+    "src/policies/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/policies/always_retry.py": "d4367480dfd173986b096518db32de4623d67a24a5ad2792e49bf5d6ff54a7e4",
+    "src/policies/always_revise.py": "0a1bcee23ca6d0d809a9877f9af1b235656a753502f1dd8e9b940231ba33e848",
+    "src/policies/base.py": "5dd7b8f4b9fbcbc7505322ac90415e41625f9ee6ed2b526422becff1e19e22fa",
+    "src/policies/fixed_schedule.py": "85b905556ace97f645cb849116357ade5a448bf518dad199c7b51afc795f1e6a",
+    "src/policies/label_based.py": "e509f279d3fbfba3c22e0e63c183840908e408de016c9be28561092a731090f0",
+    "src/policies/registry.py": "013a6fd1bcc415d361aba87ed0d5fece05057046b9dc655fa7bdaf22f7607b8d",
+    "src/policies/stage_aware.py": "787a5175b7aac12defe8f23bd6036e8d44d339a01ac68e8b5f653c6d8c94c957",
+    "src/schema.py": "155512b7a7585912ac7aa0c69a412d1bd607128d4496221da1d7e3c22f216a09",
+    "src/vendor/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/vendor/attacker_observer.py": "591a33bf16ec2bd49b920fa84e470c63f24b1d63526678f24b26a57b2e95d614",
+    "src/vendor/prompts.py": "3107a36ccc5e78666ddb83a5ae4629e08fb6969e0ff29760af5a4e5db963fac9",
+    "src/vendor/refinement.py": "34eea0a21e6bb82a87524e81d979203645a30f4e218fda84046ae317a0ceaaa6",
+    "src/vendor/revision_checker.py": "53151f64c43bee0156e5a7abb68e79cc16e19718712a84cf11262769949f67b6",
+    "src/vendor/revision_planner.py": "e5fdb707d8c8826f826b9d822dd79ecea1fb0fef22a9833809f146b953629d12"
+  },
+  "environment": {
+    "python": "3.11.16",
+    "agentdojo": "0.1.35",
+    "openai": "1.107.3",
+    "pydantic": "2.13.5",
+    "PyYAML": "6.0.3"
+  },
+  "case_ids": [
+    "c000",
+    "c001",
+    "c002",
+    "c003",
+    "c004",
+    "c005",
+    "c006",
+    "c007",
+    "c008",
+    "c009"
+  ],
+  "source_project": "12d9e67de94d3b41257fdce138fdb2fe5f898f62",
+  "result_kind": "SYNTHETIC_FIXTURE"
+}

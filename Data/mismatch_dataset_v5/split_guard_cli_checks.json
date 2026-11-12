@@ -1,0 +1,26 @@
+[
+  {
+    "case": "valid",
+    "expected_exit": 0,
+    "actual_exit": 0,
+    "result": {
+      "status": "passed",
+      "assigned_instances": 126,
+      "leakage_keys": []
+    }
+  },
+  {
+    "case": "split_pair",
+    "expected_exit": 1,
+    "actual_exit": 1,
+    "result": {
+      "status": "rejected",
+      "assigned_instances": 126,
+      "leakage_keys": [
+        "group:group_S01_S02",
+        "en:bcae1b008fb6536587c9169a18eb3fd9f6b437fc3039818f8656abb6094983f5",
+        "zh:3b8ce4e26690ffa34a1deda414da674201402fb70f1213ac987869ec2ed1d477"
+      ]
+    }
+  }
+]

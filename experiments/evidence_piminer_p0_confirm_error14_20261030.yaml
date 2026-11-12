@@ -1,0 +1,103 @@
+backend: agentdojo
+split: benchmark
+dataset: data/p0_confirm_error14_20261030/cases.jsonl
+goal_specs: data/p0_confirm_error14_20261030/goal_specs.jsonl
+policies:
+  stage_aware_p0_confirm:
+    max_retries_per_payload: 2
+    unknown_schedule:
+    - Retry
+    - Revise
+    - Retry
+observation:
+  queries:
+  - email_received
+  - received_attachment_counts
+  - website_visited
+  - website_uploads
+  - payment_received
+  - slack_direct_messages
+  - slack_membership_events
+  - slack_channel_messages
+post_failure_target_budget: 4
+seed: 20261030
+target:
+  model: gpt-5-nano
+  benchmark_version: v1.2.2
+  reasoning_effort: null
+  base_url_env: OPENAI_BASE_URL
+  api_key_env: OPENAI_API_KEY
+  request_timeout: 120
+  max_tool_calls: 30
+attacker:
+  mode: piminer_aligned
+  model: deepseek-flash[1m]
+  effort: max
+  timeout: 900
+  initialization_manifest: data/p0_confirm_error14_20261030/initializations.json
+evaluation_scope: piminer_agentdojo_test
+benchmark_audit: data/p0_confirm_error14_20261030/coverage.json
+require_observable_trigger: true
+experiment:
+  purpose: Fresh rerun of 14 cases interrupted by InternalServerError; preserve fixed
+    route/P0 and bounded confirmation; report separately.
+  source_test: ../PIMiner/experiments/deepseek_claude_agentdojo_nano.yaml
+  source_samples: ../PIMiner/eval_results/pim_test/deepseek_claude_agentdojo_nano_20261023/iterative_attack_01_agentdojo_gpt-5-nano/samples
+  source_test_cases: 30
+  source_sample_offset: 20
+  independent_heldout: false
+  learned_controller_enabled: false
+  fresh_initial: true
+  reused_initial: false
+  reused_route: true
+  reused_payload: true
+  initial_execution_note: Re-execute imported P0 in a fresh Target environment; never
+    reuse historical H1
+  conversation_continuity: persistent_per_case_and_policy
+  rolling_experience: completed_current_run_cases_isolated_by_policy
+  reuse_previous_payloads: true
+  reuse_previous_routes: true
+  total_target_budget_per_case: 5
+  case_parallelism: 16
+  primary_retry_reason: p0_failure_confirmation_or_preserve_observed_trigger
+  unknown_retry_reporting: Separate fixed-schedule fallback from evidence-driven Retry
+  p0_confirmation:
+    max_initial_executions: 3
+    reserved_revision_target_executions: 2
+    first_execution_false: Retry once in a fresh environment
+    two_false: Revise
+    two_mixed_true_false: Retry once
+    unknown: Original StageAware fallback, still subject to P0 cap and reserve
+    revised_candidate_matching_p0: Generation error; no Target execution or automatic
+      regeneration
+  beta_bernoulli:
+    prior_alpha: 1
+    prior_beta: 1
+    scope: per case, policy branch and payload SHA
+    reporting_only: true
+    used_for_decisions: false
+    used_in_attacker_prompts: false
+    updates: T/F only, excluding Target/observation errors; U and errors reported
+      separately
+  baseline_policy: stage_aware
+  rerun:
+    source_run: /mnt/data/users/zhengqingliu/PIMiner_evidence/runs/evidence_piminer_p0_confirm_asr5_20261030_retry1
+    source_selected_cases: 22
+    selected_error: InternalServerError
+    restart: fresh_from_fixed_p0
+    previous_valid_outcomes_retained_separately: true
+    fresh_sessions: true
+    fresh_rolling_experience: true
+    previous_target_executions: 60
+    selected_cases_previous_executions: 24
+    retained_source_case_ids:
+    - c001
+    - c010
+    - c012
+    - c014
+    - c016
+    - c017
+    - c018
+    - c019
+  original_observable_cases: 22
+  rerun_cases: 14

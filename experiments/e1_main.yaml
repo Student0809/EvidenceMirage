@@ -1,0 +1,7 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: test
+dataset: data/test.jsonl
+# Fill only after independent case selection and provenance/strategy audit.
+heldout_audit: data/test_audit.json
+require_observable_trigger: true

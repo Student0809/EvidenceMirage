@@ -1,0 +1,31 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: dev
+dataset: data/observable_pilot5_20261029.jsonl
+goal_specs: data/observable_pilot5_goals_20261029.jsonl
+require_observable_trigger: true
+seed: 20261029
+post_failure_target_budget: 3
+attacker:
+  mode: a2
+  model: deepseek-flash[1m]
+  effort: max
+  timeout: 900
+  a2_library: strategy_library_a2/library.json
+  a2_retrieval: data/a2/dev.retrieval.json
+policies:
+  stage_aware:
+    max_retries_per_payload: 2
+    unknown_schedule: [Retry, Revise, Retry]
+  stage_aware_no_evidence:
+    max_retries_per_payload: 2
+    unknown_schedule: [Retry, Revise, Retry]
+pilot:
+  purpose: A2 selected original cases with the current Evidence PIM controller
+  selection_rule: Same five preselected observable development cases; no new outcome selection
+  previously_evaluated: true
+  independent_heldout: false
+  learned_controller_enabled: false
+  comparison: StageAware versus evidence-masked Controller; shared fresh A2 P0 and H1
+  max_total_target_executions: 35
+  preparation: Offline BGE retrieval; original Router and black-box Attacker protocol

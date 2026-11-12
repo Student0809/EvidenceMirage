@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "tasks": [
+    {
+      "seed_id": "S01",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S02",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S03",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S04",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S05",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S06",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S07",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S08",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S09",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S10",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S11",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S12",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S13",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S14",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S15",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S16",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S17",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    },
+    {
+      "seed_id": "S18",
+      "mode": "M2",
+      "response_role": "mismatched_response",
+      "enabled": true
+    }
+  ]
+}

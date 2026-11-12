@@ -1,0 +1,885 @@
+{
+  "assignment_status": "unassigned_group_constraints_only",
+  "seed_to_group": {
+    "S01": "group_S01_S02",
+    "S02": "group_S01_S02",
+    "S03": "group_S03_S05_S10_S15",
+    "S05": "group_S03_S05_S10_S15",
+    "S10": "group_S03_S05_S10_S15",
+    "S15": "group_S03_S05_S10_S15",
+    "S04": "group_S04",
+    "S06": "group_S06_S16_S17",
+    "S16": "group_S06_S16_S17",
+    "S17": "group_S06_S16_S17",
+    "S07": "group_S07",
+    "S08": "group_S08",
+    "S09": "group_S09",
+    "S11": "group_S11_S14",
+    "S14": "group_S11_S14",
+    "S12": "group_S12_S18",
+    "S18": "group_S12_S18",
+    "S13": "group_S13"
+  },
+  "groups": [
+    {
+      "group_id": "group_S01_S02",
+      "seed_ids": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "group_id": "group_S03_S05_S10_S15",
+      "seed_ids": [
+        "S03",
+        "S05",
+        "S10",
+        "S15"
+      ]
+    },
+    {
+      "group_id": "group_S04",
+      "seed_ids": [
+        "S04"
+      ]
+    },
+    {
+      "group_id": "group_S06_S16_S17",
+      "seed_ids": [
+        "S06",
+        "S16",
+        "S17"
+      ]
+    },
+    {
+      "group_id": "group_S07",
+      "seed_ids": [
+        "S07"
+      ]
+    },
+    {
+      "group_id": "group_S08",
+      "seed_ids": [
+        "S08"
+      ]
+    },
+    {
+      "group_id": "group_S09",
+      "seed_ids": [
+        "S09"
+      ]
+    },
+    {
+      "group_id": "group_S11_S14",
+      "seed_ids": [
+        "S11",
+        "S14"
+      ]
+    },
+    {
+      "group_id": "group_S12_S18",
+      "seed_ids": [
+        "S12",
+        "S18"
+      ]
+    },
+    {
+      "group_id": "group_S13",
+      "seed_ids": [
+        "S13"
+      ]
+    }
+  ],
+  "union_edges": [
+    {
+      "left": "S01",
+      "right": "S02",
+      "reason": "shared_mechanism_family"
+    },
+    {
+      "left": "S03",
+      "right": "S05",
+      "reason": "shared_mechanism_family"
+    },
+    {
+      "left": "S03",
+      "right": "S10",
+      "reason": "shared_mechanism_family"
+    },
+    {
+      "left": "S03",
+      "right": "S15",
+      "reason": "shared_mechanism_family"
+    },
+    {
+      "left": "S06",
+      "right": "S16",
+      "reason": "shared_mechanism_family"
+    },
+    {
+      "left": "S06",
+      "right": "S17",
+      "reason": "shared_mechanism_family"
+    },
+    {
+      "left": "S11",
+      "right": "S14",
+      "reason": "shared_mechanism_family"
+    },
+    {
+      "left": "S12",
+      "right": "S18",
+      "reason": "shared_mechanism_family"
+    }
+  ],
+  "duplicate_response_groups": [
+    {
+      "language": "en",
+      "response_sha256": "bcae1b008fb6536587c9169a18eb3fd9f6b437fc3039818f8656abb6094983f5",
+      "instance_ids": [
+        "S01_M1:none",
+        "S01_M1:full"
+      ],
+      "seed_ids": [
+        "S01"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "3b8ce4e26690ffa34a1deda414da674201402fb70f1213ac987869ec2ed1d477",
+      "instance_ids": [
+        "S01_M1:none",
+        "S01_M1:full"
+      ],
+      "seed_ids": [
+        "S01"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "1cbb7cd59c0413b6e5977b27c04f4d06ea26c8f3b0cc77e2537c7bc37803fdc5",
+      "instance_ids": [
+        "S02_M1:none",
+        "S02_M1:full"
+      ],
+      "seed_ids": [
+        "S02"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "c36e8f566ea31a4e873d7272941d0039d2c35c78fa96644dbd5006eabde30454",
+      "instance_ids": [
+        "S02_M1:none",
+        "S02_M1:full"
+      ],
+      "seed_ids": [
+        "S02"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "382ee05dd78795add42b750bdba2df2a84d184286d629c90ad60a01949cb2d67",
+      "instance_ids": [
+        "S02_M1:accurate_full_control",
+        "S02_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S02"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "b697dd5f4738320bb55d57e08d479930fdaaaac7e7c5bbf439eabd59ff38913e",
+      "instance_ids": [
+        "S02_M1:accurate_full_control",
+        "S02_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S02"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "2d71904f4708ed92155b0e954219263dd03184e8204ff6d496621894914abcc4",
+      "instance_ids": [
+        "S03_M1:none",
+        "S03_M1:full"
+      ],
+      "seed_ids": [
+        "S03"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "f666894c9693dcd6aa627db4f966dc212077faad25ad0dcf7c1e4038997a72cf",
+      "instance_ids": [
+        "S03_M1:none",
+        "S03_M1:full"
+      ],
+      "seed_ids": [
+        "S03"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "9b0d8a8f49e77f8f4891d0723ceca575ab432d0ad3a9c55e89e23a9edb12caa5",
+      "instance_ids": [
+        "S03_M1:accurate_full_control",
+        "S03_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S03"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "66c90e5a197c8d61b7b20c5532705c62d33897d0bfaea18bcbe55e5f6b991dcf",
+      "instance_ids": [
+        "S03_M1:accurate_full_control",
+        "S03_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S03"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "c097864d9c8a06f4ef63b3701bbc03dd592ab9e0384255e2ceab61598c6b3795",
+      "instance_ids": [
+        "S04_M1:none",
+        "S04_M1:full"
+      ],
+      "seed_ids": [
+        "S04"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "22c2b8ee1513ccbcfc539e579399ad4f825c5100423edfd08d412c69d5a5ce4d",
+      "instance_ids": [
+        "S04_M1:none",
+        "S04_M1:full"
+      ],
+      "seed_ids": [
+        "S04"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "e6cedb68896e4c614f848e6e62e943be7fbf4c2f311ea6684b43cb525e0b6a4f",
+      "instance_ids": [
+        "S05_M1:none",
+        "S05_M1:full"
+      ],
+      "seed_ids": [
+        "S05"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "4d26738fc84fe0ce7a33672eb44d2a513373db09058b005d5e30365b4f0d1753",
+      "instance_ids": [
+        "S05_M1:none",
+        "S05_M1:full"
+      ],
+      "seed_ids": [
+        "S05"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "1c87b3fc59a207c1c43fa1ff08a498c20ee517377b83cf7c08ea5adacb6b61a4",
+      "instance_ids": [
+        "S06_M1:none",
+        "S06_M1:full"
+      ],
+      "seed_ids": [
+        "S06"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "3acaa70867a4c56fe366a3cbdf7cbc252b06f7c80b28833ff22feb43c664cee2",
+      "instance_ids": [
+        "S06_M1:none",
+        "S06_M1:full"
+      ],
+      "seed_ids": [
+        "S06"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "7c9f9ea5a7d6927d02941d7e65b378cc5f7df5ab7f56352a4ba5c141024451dc",
+      "instance_ids": [
+        "S06_M1:accurate_full_control",
+        "S06_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S06"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "d4dbc6cbc7d0e3843222a60f42cf8bb2a2ddd207922d46d84d486c3c952b7a5d",
+      "instance_ids": [
+        "S06_M1:accurate_full_control",
+        "S06_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S06"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "61fe933e641f693c04a7fe5a3e75ecac6c72bc48069e54a901156c673a710ec1",
+      "instance_ids": [
+        "S07_M1:none",
+        "S07_M1:full"
+      ],
+      "seed_ids": [
+        "S07"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "7a5a1ba8d1f2fe8b3c710f9ca1c16481abe5c133824cb822c79e17b3b5485ff7",
+      "instance_ids": [
+        "S07_M1:none",
+        "S07_M1:full"
+      ],
+      "seed_ids": [
+        "S07"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "ff51edab11a20e401b7f1a90cf1f6d41cfe6e2be2b2743474c6c8af99847eb00",
+      "instance_ids": [
+        "S07_M1:accurate_full_control",
+        "S07_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S07"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "34ccd252dc756410a3b62b3181f41ee616327391adab132068ed72c9f45af978",
+      "instance_ids": [
+        "S07_M1:accurate_full_control",
+        "S07_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S07"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "869d0d0af8ec5b13f5952a9e76c3d8995938334f00b2710cdaff1fbfdab16649",
+      "instance_ids": [
+        "S08_M1:none",
+        "S08_M1:full"
+      ],
+      "seed_ids": [
+        "S08"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "b1bf4979af6783785de1145aca113ffed50b811c26c8dc7398ab4e9f29dd1ed8",
+      "instance_ids": [
+        "S08_M1:none",
+        "S08_M1:full"
+      ],
+      "seed_ids": [
+        "S08"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "d264b53c31339f9938cca2b39735e0f3f12606920e656ae9ebe1d4746ffabe11",
+      "instance_ids": [
+        "S08_M2:accurate_response",
+        "S08_M3:mismatched_response"
+      ],
+      "seed_ids": [
+        "S08"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "0288c6d506751cbdab1a956963a524439d113abf16425f38ea8fd30a2a46b5a4",
+      "instance_ids": [
+        "S08_M2:accurate_response",
+        "S08_M3:mismatched_response"
+      ],
+      "seed_ids": [
+        "S08"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "5ac8d8f87a2303dca345a0d975475b69e8fd16ca0705e1ccc01d5b721b8e7ed0",
+      "instance_ids": [
+        "S08_M2:mismatched_response",
+        "S08_M3:accurate_response"
+      ],
+      "seed_ids": [
+        "S08"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "187bec7226fe6c38c1d89398da05ad33bb24311e8482ecb6af1482074fa2d776",
+      "instance_ids": [
+        "S08_M2:mismatched_response",
+        "S08_M3:accurate_response"
+      ],
+      "seed_ids": [
+        "S08"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "34b48ec112714176ab5fce7585c4eb51800fd03dbbf9d2964ddcf82622bc199d",
+      "instance_ids": [
+        "S09_M1:none",
+        "S09_M1:full"
+      ],
+      "seed_ids": [
+        "S09"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "f8d59c1caab8114e508c23d9afecdfc6e8e6d0fecf58acd125cfbec2721344bf",
+      "instance_ids": [
+        "S09_M1:none",
+        "S09_M1:full"
+      ],
+      "seed_ids": [
+        "S09"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "165da11ddbfb0a861c98a3fa549fc9c2d3a6f216af66d970f7097bafc0bfa934",
+      "instance_ids": [
+        "S09_M1:accurate_full_control",
+        "S09_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S09"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "5541cad3244f0b4118e9df29279e2e79dac7ab6da7379f11ab570e2da7970420",
+      "instance_ids": [
+        "S09_M1:accurate_full_control",
+        "S09_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S09"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "79e1719a59fd70f152515f3da4da124e9815902b1183dee89bff23d5e3e2f576",
+      "instance_ids": [
+        "S10_M1:none",
+        "S10_M1:full"
+      ],
+      "seed_ids": [
+        "S10"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "368b83e230d2fe82b926c4b6dd537c7cc332abc91c96a58f1302d707c51ede94",
+      "instance_ids": [
+        "S10_M1:none",
+        "S10_M1:full"
+      ],
+      "seed_ids": [
+        "S10"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "a8c187fb952089910b5d87adce43892b9965a43dad86b67b547639df2d76467d",
+      "instance_ids": [
+        "S10_M1:accurate_full_control",
+        "S10_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S10"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "80f29fc28436c94ea60e05d38abcc04b107045dcc905c45bc481fffe3d3cb55e",
+      "instance_ids": [
+        "S10_M1:accurate_full_control",
+        "S10_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S10"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "e6f5920c300f096aeb37e7b7d051979a26d611c664730985886717576f9ed3cf",
+      "instance_ids": [
+        "S11_M1:none",
+        "S11_M1:full"
+      ],
+      "seed_ids": [
+        "S11"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "eae0322b7a507bf7d02b08c426ddca6979b51008ca4820ab5599756171e39c63",
+      "instance_ids": [
+        "S11_M1:none",
+        "S11_M1:full"
+      ],
+      "seed_ids": [
+        "S11"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "397941dc3b955993560c7d652eb60400802274ce73bc1d37cfde41051bc56f98",
+      "instance_ids": [
+        "S11_M1:accurate_full_control",
+        "S11_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S11"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "dae8b30a02353b186de742c2532eb04e469a39a5a8910f272a698a9d9796150a",
+      "instance_ids": [
+        "S11_M1:accurate_full_control",
+        "S11_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S11"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "c6de2858b0769464fee42d4d1c876ca2f42621ddf4cdf1f4c8aa39343c82b6bb",
+      "instance_ids": [
+        "S12_M1:none",
+        "S12_M1:full"
+      ],
+      "seed_ids": [
+        "S12"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "d3a54e82b375541f06740281c779a8a81763594ca8b0026e20a0e0fe79c00dce",
+      "instance_ids": [
+        "S12_M1:none",
+        "S12_M1:full"
+      ],
+      "seed_ids": [
+        "S12"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "3ded35fc7729df612a770d03aa99ab5fbf8c13005e073fca55940f5c35fc790e",
+      "instance_ids": [
+        "S12_M1:accurate_full_control",
+        "S12_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S12"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "32ee20a0b3e14cf8ec39f4309dc9199bfcd2d867f242a8a1564fa3bd1d5e7496",
+      "instance_ids": [
+        "S12_M1:accurate_full_control",
+        "S12_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S12"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "aa0c69db34cdaa1979482a50f9f7a69ccd30a244ea6fe06cacec45fd07d85fa1",
+      "instance_ids": [
+        "S13_M1:none",
+        "S13_M1:full"
+      ],
+      "seed_ids": [
+        "S13"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "cd7282ac203e096c21cf43a5e81c272c00f7d6be232854a04536c8927316397a",
+      "instance_ids": [
+        "S13_M1:none",
+        "S13_M1:full"
+      ],
+      "seed_ids": [
+        "S13"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "b5b177657f251c2b2c95331f15d80c73e5d701ec0e125ed393f5a820e9031787",
+      "instance_ids": [
+        "S13_M1:accurate_full_control",
+        "S13_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S13"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "bd122a3c71b4a7fea25babe4e5c59d51f2e20cd7079bb6440cb973412d7495ac",
+      "instance_ids": [
+        "S13_M1:accurate_full_control",
+        "S13_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S13"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "24ed642b97114fceb96dde3a7fb4a0660bb194685a54ffc585d5cf89609436cd",
+      "instance_ids": [
+        "S14_M1:none",
+        "S14_M1:full"
+      ],
+      "seed_ids": [
+        "S14"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "9ba2f7c9c8328c90e140f36020c6c690235b9b54e7c005e810e2eb89c8d36093",
+      "instance_ids": [
+        "S14_M1:none",
+        "S14_M1:full"
+      ],
+      "seed_ids": [
+        "S14"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "5041842e495579f7817ee66e16e08c43e0fcd3a28b2c3f35194738575390d807",
+      "instance_ids": [
+        "S14_M1:accurate_full_control",
+        "S14_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S14"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "50414156e8e80f685aedf89d87faeaad8b3a41ce1466068fab20dc5006de7f0a",
+      "instance_ids": [
+        "S14_M1:accurate_full_control",
+        "S14_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S14"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "2b3c3861500a403532340b208c0888403e5689533e6f1c34c4fce143bd19149a",
+      "instance_ids": [
+        "S15_M1:none",
+        "S15_M1:full"
+      ],
+      "seed_ids": [
+        "S15"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "68323367394c1669fc62d5674cf57b604e8267f65d5e6e465e71d36a44ed46e3",
+      "instance_ids": [
+        "S15_M1:none",
+        "S15_M1:full"
+      ],
+      "seed_ids": [
+        "S15"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "fc493f75909ce8ae38ae66aeae4a0b1f516f5ba732e39c570e8a7beaab8db8c7",
+      "instance_ids": [
+        "S15_M1:accurate_full_control",
+        "S15_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S15"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "9fcf4d84a05dd141fe1a6e112e4a7041ba975d0d2f3200cf31607ecb53ae3954",
+      "instance_ids": [
+        "S15_M1:accurate_full_control",
+        "S15_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S15"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "d4b9a8104803247141ac500d95d6b52d22f688e3039520b19245a044e0ffe065",
+      "instance_ids": [
+        "S16_M1:none",
+        "S16_M1:full"
+      ],
+      "seed_ids": [
+        "S16"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "75417615c3fe1bff753026989a7c7cdbc381c5e9b5bf87c4c31da3fd60b09fa8",
+      "instance_ids": [
+        "S16_M1:none",
+        "S16_M1:full"
+      ],
+      "seed_ids": [
+        "S16"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "f8fe9c003dbd7228d2bf2655f0309945c718a65c92d6f65d49a97a2b4afbc96a",
+      "instance_ids": [
+        "S16_M1:accurate_full_control",
+        "S16_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S16"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "80c1ecfa3e9b3127934a9ef352601b1e5e23885269193d34ac2651927a4f0c31",
+      "instance_ids": [
+        "S16_M1:accurate_full_control",
+        "S16_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S16"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "c2027a0b644cfbdebdc06a75d3fb521e148c27fa32d5de6756c436a471471349",
+      "instance_ids": [
+        "S17_M1:none",
+        "S17_M1:full"
+      ],
+      "seed_ids": [
+        "S17"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "64d8b97e8a45f322d2a3895fa0ea96a4aeafc7ce7a8d0213eb40060fe8f9bd7d",
+      "instance_ids": [
+        "S17_M1:none",
+        "S17_M1:full"
+      ],
+      "seed_ids": [
+        "S17"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "4915fbd6c3b237e30d69f13b661c31429147d5b0a2b9496533cf309f5fd1417c",
+      "instance_ids": [
+        "S17_M1:accurate_full_control",
+        "S17_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S17"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "afa651db3135dc24ecea625afee5410db0f4273990b9e532ae7055e86274dd1d",
+      "instance_ids": [
+        "S17_M1:accurate_full_control",
+        "S17_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S17"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "eaf5763cb57c1f8c614c4ad4cd1286cd9b6903d930492cfbcba7b52207b2fa90",
+      "instance_ids": [
+        "S18_M1:none",
+        "S18_M1:full"
+      ],
+      "seed_ids": [
+        "S18"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "0c54c2d1af16c3fa32f4d4a3d4d8a4b8a21fc13fd68a648372ec68d71f66eb6a",
+      "instance_ids": [
+        "S18_M1:none",
+        "S18_M1:full"
+      ],
+      "seed_ids": [
+        "S18"
+      ]
+    },
+    {
+      "language": "en",
+      "response_sha256": "6204e9ed151a2d38f3e9fd0b7a400aff5ce8de428a16ec051e06eff2f499023b",
+      "instance_ids": [
+        "S18_M1:accurate_full_control",
+        "S18_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S18"
+      ]
+    },
+    {
+      "language": "zh",
+      "response_sha256": "94053eb5e3f5ee905ea1db9a177a22dad38e417e88c1fefa6491bd0e7e5facc3",
+      "instance_ids": [
+        "S18_M1:accurate_full_control",
+        "S18_M2:mismatched_response"
+      ],
+      "seed_ids": [
+        "S18"
+      ]
+    }
+  ]
+}

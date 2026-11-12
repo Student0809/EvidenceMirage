@@ -1,0 +1,25 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: dev
+dataset: data/observable_pilot5_20261029.jsonl
+goal_specs: data/observable_pilot5_goals_20261029.jsonl
+require_observable_trigger: true
+seed: 20261029
+post_failure_target_budget: 2
+policies:
+  always_revise: {}
+pilot:
+  purpose: Original PIMiner revision workflow under the same AgentDojo harness, ASR@3 matched baseline
+  source_run: runs/observable_pilot5_20261029
+  selection_rule: Same five preselected cases as the existing observable pilot; no new outcome selection
+  comparison: Reuse exact initial P0/H1, then original PIMiner revisions for at most two new Target executions; compare old evidence-arm prefixes at total budget three
+  previously_evaluated: true
+  independent_heldout: false
+  learned_controller_enabled: false
+  asr_k: 3
+  reused_initial_executions: 5
+  max_new_target_executions: 10
+  max_new_revision_calls: 10
+  new_router_calls: 0
+  case_parallelism: 5
+  errors: Stop and mark missing, consistent with the evidence harness; do not silently retry provider errors

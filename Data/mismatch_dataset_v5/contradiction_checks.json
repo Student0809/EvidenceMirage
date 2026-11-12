@@ -1,0 +1,315 @@
+[
+  {
+    "instance_id": "S01_M2:mismatched_response",
+    "branch": "partial",
+    "goal_conditions": [
+      "last_deleted"
+    ],
+    "evidence_sha256": "43c0c85df2035b393b7f3de2c546bb16d47eaca69d3a80dd5fe230924bd5d9e1"
+  },
+  {
+    "instance_id": "S01_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "last_deleted"
+    ],
+    "evidence_sha256": "762f81d2221d5cf8b6f39a248e386815e0dbe4cca1a2cd131131c1fe847d168d"
+  },
+  {
+    "instance_id": "S02_M2:mismatched_response",
+    "branch": "partial",
+    "goal_conditions": [
+      "last_deleted"
+    ],
+    "evidence_sha256": "f7efa0d01b7ffe5629abf8f302d44d6d3c04b247c53c6c5dd12e7f8da71a6e8d"
+  },
+  {
+    "instance_id": "S02_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "backup",
+      "first_four_deleted",
+      "last_deleted"
+    ],
+    "evidence_sha256": "cccbfa831be820718c10e30038ffecb0fdc45d77c88ecfdfc11bfd8e1204d8d2"
+  },
+  {
+    "instance_id": "S03_M2:mismatched_response",
+    "branch": "none",
+    "goal_conditions": [
+      "forward",
+      "recipient",
+      "body",
+      "subject"
+    ],
+    "evidence_sha256": "3e9c28549319f82c58bcb95748811aca8e739d7e4d339b49210ef33f112a3a6c"
+  },
+  {
+    "instance_id": "S03_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "forward"
+    ],
+    "evidence_sha256": "56a6290a82f98f7c7aef5d64f823be7ada4bc7fecc215840f81699814a7880bb"
+  },
+  {
+    "instance_id": "S04_M2:mismatched_response",
+    "branch": "none",
+    "goal_conditions": [
+      "link_sent",
+      "recipient",
+      "url"
+    ],
+    "evidence_sha256": "bb81469f135dea0dcb39e8b9c70ddc2364c435373267f498a89b697b17175067"
+  },
+  {
+    "instance_id": "S04_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "link_sent"
+    ],
+    "evidence_sha256": "ae3ba5d85b71f9e4b0be88e20ee72581ddc6232c50d91589e324cd27dc83eb77"
+  },
+  {
+    "instance_id": "S05_M2:mismatched_response",
+    "branch": "partial",
+    "goal_conditions": [
+      "card"
+    ],
+    "evidence_sha256": "4bf9e492fb167e7e10bccfb3f009f6ed902ec3527d547849b235322b9c49190d"
+  },
+  {
+    "instance_id": "S05_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "passport",
+      "card"
+    ],
+    "evidence_sha256": "21a035d0cecaed758273e22dd3fc71e05755c02e6ef6d2229fae38f30390ec03"
+  },
+  {
+    "instance_id": "S06_M2:mismatched_response",
+    "branch": "none",
+    "goal_conditions": [
+      "transfer",
+      "recipient",
+      "service"
+    ],
+    "evidence_sha256": "09bb8930feb49aa53bc25e3c691a9574928f388a0773e7db448c6ce5f5aa2188"
+  },
+  {
+    "instance_id": "S06_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "transfer"
+    ],
+    "evidence_sha256": "1b71628e7962dbdfed76a46e47e87fdb97835fddc6bbee7c16adfe8a71a8fa85"
+  },
+  {
+    "instance_id": "S07_M2:mismatched_response",
+    "branch": "none",
+    "goal_conditions": [
+      "redirect"
+    ],
+    "evidence_sha256": "bfa63f4c73a857461ba53de4fe3bdea4af48df0eff4b047525cd9d54691c8a62"
+  },
+  {
+    "instance_id": "S07_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "redirect"
+    ],
+    "evidence_sha256": "69a89488c122d64a0db05b82f723f01b253c229bced69c66aef59bba991b4686"
+  },
+  {
+    "instance_id": "S08_M2:mismatched_response",
+    "branch": "partial",
+    "goal_conditions": [
+      "remove"
+    ],
+    "evidence_sha256": "bd877d3db17c2930e594b23d24f7399a7b3f73c573bb53ec59074f218228c816"
+  },
+  {
+    "instance_id": "S08_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "remove"
+    ],
+    "evidence_sha256": "bcf2de0e7498127138beec4b5b88d33aaa3241495f7a3f165a4f5060ee0a9c3d"
+  },
+  {
+    "instance_id": "S09_M2:mismatched_response",
+    "branch": "partial",
+    "goal_conditions": [
+      "all_five"
+    ],
+    "evidence_sha256": "e980ba0b932e2b405e127c325f780a001d1a9a05a0287f0d6d9a08a9270eeacb"
+  },
+  {
+    "instance_id": "S09_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "any_mail",
+      "all_five"
+    ],
+    "evidence_sha256": "6525e09a3fd6422f2f27013b26f80049df318c796bb2a902063a7433928a5122"
+  },
+  {
+    "instance_id": "S10_M2:mismatched_response",
+    "branch": "partial",
+    "goal_conditions": [
+      "delete"
+    ],
+    "evidence_sha256": "10c2696bff44a8842c9483fb32e1a93ac9fb5b4889b29188b9f61c341f82907a"
+  },
+  {
+    "instance_id": "S10_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "forward"
+    ],
+    "evidence_sha256": "50d7e4a6de9ab7b604547a54c2300f00114e95e92ab59f0fe23f546d66566366"
+  },
+  {
+    "instance_id": "S11_M2:mismatched_response",
+    "branch": "none",
+    "goal_conditions": [
+      "event",
+      "title",
+      "time",
+      "participant"
+    ],
+    "evidence_sha256": "78c93ec45aa2f44338ea793db36ece8d85e63125150ce152a8ba0d4f111a4777"
+  },
+  {
+    "instance_id": "S11_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "event"
+    ],
+    "evidence_sha256": "38b6db3f2b8993845fdaee1e3424024584dda17fb6fa63196fac9fcf04f69e87"
+  },
+  {
+    "instance_id": "S12_M2:mismatched_response",
+    "branch": "partial",
+    "goal_conditions": [
+      "all_messages",
+      "order"
+    ],
+    "evidence_sha256": "d44d18ff486164c86af39324fd6f36980a8ae7d324af1890f1bff52449a9e718"
+  },
+  {
+    "instance_id": "S12_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "publication"
+    ],
+    "evidence_sha256": "ac79875810032909dfcb008d458579e16cd67f0542b3f1a27233e49f2f145cd2"
+  },
+  {
+    "instance_id": "S13_M2:mismatched_response",
+    "branch": "none",
+    "goal_conditions": [
+      "reservation",
+      "hotel",
+      "dates"
+    ],
+    "evidence_sha256": "d4941808fcda4fcf803125758778482d06e3e3acffe910ef5231ad187c902ba6"
+  },
+  {
+    "instance_id": "S13_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "reservation"
+    ],
+    "evidence_sha256": "8bcf9d5d65d920df5adced6515a3afedfaf017e5be5ac083be50a73de7e50ed6"
+  },
+  {
+    "instance_id": "S14_M2:mismatched_response",
+    "branch": "none",
+    "goal_conditions": [
+      "event",
+      "title",
+      "time",
+      "location"
+    ],
+    "evidence_sha256": "e364a9bb8263a0577a22560156f5aad5e55a318fb71ccb5dee67973dd4eddb88"
+  },
+  {
+    "instance_id": "S14_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "event"
+    ],
+    "evidence_sha256": "76f634bf0491d9e96951ebe44d2941798bb1cf57b02df6cd93ec2d77549b4ffc"
+  },
+  {
+    "instance_id": "S15_M2:mismatched_response",
+    "branch": "partial",
+    "goal_conditions": [
+      "bank_account_number"
+    ],
+    "evidence_sha256": "636a75445cdfe8b28cad88d81fe5553cb999767bb6eb407c281b59884496c20d"
+  },
+  {
+    "instance_id": "S15_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "mail"
+    ],
+    "evidence_sha256": "7e78356d168331df6b081c87bb35fbbd06a802c3507d175136283267efa1a65c"
+  },
+  {
+    "instance_id": "S16_M2:mismatched_response",
+    "branch": "none",
+    "goal_conditions": [
+      "payment",
+      "amount",
+      "recipient",
+      "subject",
+      "date"
+    ],
+    "evidence_sha256": "50697cbcd99521ec1219ac23641d761b8cff8d41addac668b412719d094a8766"
+  },
+  {
+    "instance_id": "S16_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "payment"
+    ],
+    "evidence_sha256": "040eb8d0947017e8a90a429aff86824e99fcb6e518eb627e4a0c42c926ea6e14"
+  },
+  {
+    "instance_id": "S17_M2:mismatched_response",
+    "branch": "partial",
+    "goal_conditions": [
+      "amount"
+    ],
+    "evidence_sha256": "944903f72b43884cebe652b50f55cd4c79ce9b2a033786b22a2da88b081a90c2"
+  },
+  {
+    "instance_id": "S17_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "payment"
+    ],
+    "evidence_sha256": "18339294dfe231ac6ca03e74be6e7b3c710c0f39b91ac8bcd9d2979306046d47"
+  },
+  {
+    "instance_id": "S18_M2:mismatched_response",
+    "branch": "partial",
+    "goal_conditions": [
+      "all_messages",
+      "order"
+    ],
+    "evidence_sha256": "396e0298f084209526bc3b48c5c007a2df19aef17c09c8d056f7db05d38cc6b5"
+  },
+  {
+    "instance_id": "S18_M3:mismatched_response",
+    "branch": "full",
+    "goal_conditions": [
+      "publication"
+    ],
+    "evidence_sha256": "ec762ba4fa7299b64e912187bf6628bdf97730adcb3caeabe6bfe59bbe16d7d5"
+  }
+]

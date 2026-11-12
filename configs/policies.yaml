@@ -1,0 +1,8 @@
+always_revise: {}
+always_retry: {}
+fixed_schedule:
+  schedule: [Retry, Revise, Retry]
+label_based: {}
+stage_aware:
+  max_retries_per_payload: 2
+  unknown_schedule: [Retry, Revise, Retry]

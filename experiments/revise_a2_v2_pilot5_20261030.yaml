@@ -1,0 +1,30 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: dev
+dataset: data/observable_pilot5_20261029.jsonl
+goal_specs: data/observable_pilot5_goals_20261029.jsonl
+require_observable_trigger: true
+seed: 20261030
+post_failure_target_budget: 3
+attacker:
+  mode: a2
+  model: deepseek-flash[1m]
+  effort: max
+  timeout: 900
+  revision_profile: calibrated
+  a2_library: strategy_library_a2/library.json
+  a2_retrieval: data/a2/dev.field_v2_20261030.retrieval.json
+policies:
+  stage_aware:
+    max_retries_per_payload: 2
+    unknown_schedule: [Retry, Revise, Retry]
+  stage_aware_no_evidence:
+    max_retries_per_payload: 2
+    unknown_schedule: [Retry, Revise, Retry]
+experiment:
+  purpose: Optional development configuration for tier-preserving diverse A2 retrieval and calibrated black-box revisions
+  independent_heldout: false
+  previously_evaluated: true
+  learned_controller_enabled: false
+  initialization: Fresh Router/P0/H1 shared across controller policies
+  comparison_warning: This configuration is not the fixed-history Revise ablation; use scripts/run_revise_ablation_20261030.py for that comparison

@@ -1,0 +1,25 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: dev
+dataset: data/observable_pilot5_20261029.jsonl
+goal_specs: data/observable_pilot5_goals_20261029.jsonl
+require_observable_trigger: true
+seed: 20261029
+post_failure_target_budget: 2
+policies:
+  stage_aware:
+    max_retries_per_payload: 2
+    unknown_schedule: [Retry, Revise, Retry]
+pilot:
+  purpose: Fresh five-case repetition of the original Evidence Controller workflow at total ASR@3
+  reference_run: runs/observable_pilot5_20261029
+  selection_rule: Same fixed five development cases; no selection or replacement based on outcomes
+  previously_evaluated: true
+  independent_heldout: false
+  learned_controller_enabled: false
+  fresh_initial: true
+  reuse_previous_payloads: false
+  total_target_budget_per_case: 3
+  max_total_target_executions: 15
+  case_parallelism: 5
+  comparison: Old Evidence first-three-execution prefixes versus a fresh single Evidence run; not a fixed-payload replay or independent held-out evaluation

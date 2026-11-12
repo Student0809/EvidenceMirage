@@ -1,0 +1,7 @@
+# Preregistered definitions only; intentionally not runnable before E1 evidence.
+status: deferred_until_main_effect
+definitions:
+  without_stage: Use label_based with identical generator and fixed observations.
+  without_history: Use current trigger only; T retries and F revises; U follows fixed schedule. Retain global budget.
+  without_evidence: Supply no observation packets to controller or generator; trigger stays U. Keep Gold and Final.
+evaluation: A separately frozen independent set; do not tune repeatedly on E1 test.

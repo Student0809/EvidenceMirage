@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "tasks": [
+    {"seed_id": "S01", "mode": "M2", "response_role": "mismatched_response", "enabled": true}
+  ]
+}

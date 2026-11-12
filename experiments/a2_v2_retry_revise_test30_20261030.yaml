@@ -1,0 +1,64 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: benchmark
+evaluation_scope: piminer_agentdojo_test
+dataset: data/agentdojo_a2v2_test30_20261030/cases.jsonl
+goal_specs: data/agentdojo_a2v2_test30_20261030/goal_specs.jsonl
+benchmark_audit: data/agentdojo_a2v2_test30_20261030/coverage.json
+require_observable_trigger: false
+seed: 20261030
+post_failure_target_budget: 4
+policies:
+  stage_aware:
+    max_retries_per_payload: 2
+    unknown_schedule:
+    - Retry
+    - Revise
+    - Retry
+attacker:
+  mode: piminer_aligned
+  model: deepseek-flash[1m]
+  effort: max
+  timeout: 900
+  initialization_manifest: data/piminer_aligned30_20261030/initializations.json
+  revision_profile: original
+  a2_library: strategy_library_a2/library.json
+  a2_retrieval: data/a2/test30_20261030.field_v2.retrieval.json
+experiment:
+  purpose: Run A2 v2 original-profile Revise/Retry on all 30 original PIMiner AgentDojo
+    test snapshots, retaining eight unobservable cases as Unknown fallback
+  source_test: ../PIMiner/experiments/deepseek_claude_agentdojo_nano.yaml
+  source_samples: ../PIMiner/eval_results/pim_test/deepseek_claude_agentdojo_nano_20261023/iterative_attack_01_agentdojo_gpt-5-nano/samples
+  source_test_cases: 30
+  source_sample_offset: 20
+  independent_heldout: false
+  learned_controller_enabled: false
+  fresh_initial: true
+  reused_initial: false
+  reused_route: true
+  reused_payload: true
+  initial_execution_note: Re-execute imported P0 in a fresh Target environment; never
+    reuse historical H1
+  conversation_continuity: persistent_per_case_and_policy
+  rolling_experience: Completed current-run cases share policy-scoped rolling experience;
+    persistent sessions and execution histories remain per-case
+  rolling_experience_metadata_note: Description corrected after the run. The executed
+    frozen lock retains the original inaccurate isolation description; see the timestamped
+    protocol_amendment_experience_20261030.json in the run directory. Runtime settings
+    and all recorded calls were unchanged.
+  reuse_previous_payloads: true
+  reuse_previous_routes: true
+  total_target_budget_per_case: 5
+  case_parallelism: 16
+  primary_retry_reason: preserve_observed_trigger
+  unknown_retry_reporting: Separate fixed-schedule fallback from evidence-driven Retry
+  online_evaluation_status: planned
+  retrieval_variant: field_embedding
+  cold_start_policy: preserve_bundle_verified_template_without_retrieval_hits
+  selection_basis: All c000..c029 from the original fixed test window, no outcome-based
+    exclusions or replacements
+  observable_trigger_cases: 22
+  unobservable_trigger_cases: 8
+  unobservable_trigger_policy: Existing StageAware Unknown fallback; no extra resource
+    grants or synthetic predicates
+allow_unobservable_trigger: true

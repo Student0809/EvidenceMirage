@@ -1,0 +1,10 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: dev
+attacker:
+  mode: a2
+  model: deepseek-flash[1m]
+  effort: max
+  timeout: 900
+  a2_library: strategy_library_a2/library.json
+  a2_retrieval: data/a2/dev.retrieval.json

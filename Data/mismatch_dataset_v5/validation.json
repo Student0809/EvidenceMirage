@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "records": 54,
+  "response_branch_annotations": 126,
+  "unchanged_M1_pairs": 18,
+  "unchanged_execution_files": 46,
+  "contradicted_M2_M3_claims": 36,
+  "M3_future_template_hits": 0,
+  "split_regressions": {
+    "group_consistent_assignment_passed": true,
+    "split_M1_pair_rejected": true,
+    "split_mechanism_family_rejected": true
+  },
+  "S17_missing_subject_and_date_claim_verified": true,
+  "old_artifacts_unchanged": true,
+  "naturalness_status": "author_revision_pending_user_review",
+  "semantic_assertion_maps": "manually_authored_then_checked_against_frozen_conditions_not_an_independent_model_review"
+}

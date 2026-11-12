@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "protocol": "minipim-a2-v1",
+  "source_project": "MiniPIM",
+  "upstream_files": {
+    "strategy_runtime/raw_ablation.py": {
+      "sha256": "d2aac616065c268adff305a2d9df9900c0364d4a9d4b94478f3bfad7d4a8704a",
+      "snapshot": "strategy_library_a2/upstream/raw_ablation.py"
+    },
+    "scripts/library_token_audit.py": {
+      "sha256": "bd3a70a33b72def12db7193476d6437e2b5bcc2cb9d67e01de0c7a2d7cf0adc6",
+      "snapshot": "strategy_library_a2/upstream/library_token_audit.py"
+    },
+    "strategy_library_json/convert.py": {
+      "sha256": "ede4ea1ff4cc6f9f5a7e84e5d8cec2c631819ca89fff09f1b5c05bf428a47a08",
+      "snapshot": "strategy_library_a2/upstream/convert.py"
+    }
+  },
+  "copied_functions": {
+    "TASK_TYPES": {
+      "sha256": "6c919f93013d9508d559f47a9d14375b7934c2739d1e2eba6426bcb92467d8a1",
+      "upstream": "strategy_runtime/raw_ablation.py"
+    },
+    "select_cases": {
+      "sha256": "c4969ff4a53e26b7553b2928c013bcecb6112857d98baac2587b4753ebf7148b",
+      "upstream": "strategy_runtime/raw_ablation.py"
+    },
+    "partition": {
+      "sha256": "421c231b199b773663f75714e21358454058e8a480548f6d2baab5d93e3eefcc",
+      "upstream": "scripts/library_token_audit.py"
+    }
+  },
+  "source_annotations": {
+    "upstream": "eval_results/strategy_research/raw_case_ablation_20261014_v2/library/task_type_annotations.json",
+    "sha256": "f0ff6adfce7c0c34b820bfc249b547579e18ed8ebb1ee31b0080635b8fc2d3e4",
+    "snapshot": "strategy_library_a2/source_task_type_annotations.json"
+  },
+  "policy": "Current project Markdown is the source of all method and case text. Upstream files are provenance only; preparation has no external project dependency."
+}

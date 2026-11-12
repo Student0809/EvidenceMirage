@@ -1,0 +1,24 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: dev
+dataset: data/observable_pilot5_20261029.jsonl
+goal_specs: data/observable_pilot5_goals_20261029.jsonl
+require_observable_trigger: true
+seed: 20261029
+post_failure_target_budget: 3
+policies:
+  stage_aware:
+    max_retries_per_payload: 2
+    unknown_schedule: [Retry, Revise, Retry]
+  stage_aware_no_evidence:
+    max_retries_per_payload: 2
+    unknown_schedule: [Retry, Revise, Retry]
+pilot:
+  purpose: Prospective five-case verification of observable necessary Trigger and evidence-based decisions
+  selection_rule: First five cases sorted by case_id with at least one statically reachable necessary trigger in data/dev.jsonl; no outcome selection
+  previously_evaluated: true
+  independent_heldout: false
+  learned_controller_enabled: false
+  max_total_target_executions: 35
+  case_parallelism: 5
+  comparison: Original StageAware versus the identical Controller with evidence masked; shared new P0 and H1

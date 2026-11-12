@@ -1,0 +1,21 @@
+extends: configs/experiment.yaml
+backend: agentdojo
+split: dev
+dataset: data/pilot5_20261028.jsonl
+goal_specs: data/pilot5_goals_20261028.jsonl
+policies:
+  stage_aware:
+    max_retries_per_payload: 2
+    unknown_schedule:
+    - Retry
+    - Revise
+    - Retry
+pilot:
+  purpose: Five-case prospective execution on previously evaluated original AgentDojo
+    test identities
+  selection_rule: First five sample files by ascending saved index in original 30-case
+    AgentDojo test; no outcome-based filtering
+  initial_target_budget: 5
+  max_total_target_executions: 20
+  previously_evaluated: true
+  independent_heldout: false

@@ -1,0 +1,21 @@
+backend: agentdojo
+split: dev
+dataset: data/dev.jsonl
+goal_specs: data/goal_specs.jsonl
+policies: configs/policies.yaml
+observation: configs/observation.yaml
+post_failure_target_budget: 3
+seed: 20261028
+target:
+  model: gpt-5-nano
+  benchmark_version: v1.2.2
+  reasoning_effort: null
+  base_url_env: OPENAI_BASE_URL
+  api_key_env: OPENAI_API_KEY
+  request_timeout: 120
+  max_tool_calls: 30
+attacker:
+  mode: original
+  model: deepseek-flash[1m]
+  effort: max
+  timeout: 900

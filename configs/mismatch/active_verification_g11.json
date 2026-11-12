@@ -1,0 +1,8 @@
+{
+  "protocol": "framework_assisted_target_verification_v2",
+  "mode": "followup",
+  "email_ids": ["34"],
+  "file_ids": ["11", "1", "3", "4", "12"],
+  "max_rounds": 3,
+  "max_queries": 2
+}

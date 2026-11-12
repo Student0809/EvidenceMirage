@@ -1,0 +1,154 @@
+{
+  "schema_version": 1,
+  "config": {
+    "backend": "agentdojo",
+    "split": "benchmark",
+    "dataset": "data/p0_confirm_error14_20261030/cases.jsonl",
+    "goal_specs": "data/p0_confirm_error14_20261030/goal_specs.jsonl",
+    "policies": {
+      "stage_aware_p0_confirm": {
+        "max_retries_per_payload": 2,
+        "unknown_schedule": [
+          "Retry",
+          "Revise",
+          "Retry"
+        ]
+      }
+    },
+    "observation": {
+      "queries": [
+        "email_received",
+        "received_attachment_counts",
+        "website_visited",
+        "website_uploads",
+        "payment_received",
+        "slack_direct_messages",
+        "slack_membership_events",
+        "slack_channel_messages"
+      ]
+    },
+    "post_failure_target_budget": 4,
+    "seed": 20261030,
+    "target": {
+      "model": "gpt-5-nano",
+      "benchmark_version": "v1.2.2",
+      "reasoning_effort": null,
+      "base_url_env": "OPENAI_BASE_URL",
+      "api_key_env": "OPENAI_API_KEY",
+      "request_timeout": 120,
+      "max_tool_calls": 30
+    },
+    "attacker": {
+      "mode": "piminer_aligned",
+      "model": "deepseek-flash[1m]",
+      "effort": "max",
+      "timeout": 900,
+      "initialization_manifest": "data/p0_confirm_error14_20261030/initializations.json"
+    },
+    "evaluation_scope": "piminer_agentdojo_test",
+    "benchmark_audit": "data/p0_confirm_error14_20261030/coverage.json",
+    "require_observable_trigger": true,
+    "experiment": {
+      "purpose": "Fresh rerun of 14 cases interrupted by InternalServerError; preserve fixed route/P0 and bounded confirmation; report separately.",
+      "source_test": "../PIMiner/experiments/deepseek_claude_agentdojo_nano.yaml",
+      "source_samples": "../PIMiner/eval_results/pim_test/deepseek_claude_agentdojo_nano_20261023/iterative_attack_01_agentdojo_gpt-5-nano/samples",
+      "source_test_cases": 30,
+      "source_sample_offset": 20,
+      "independent_heldout": false,
+      "learned_controller_enabled": false,
+      "fresh_initial": true,
+      "reused_initial": false,
+      "reused_route": true,
+      "reused_payload": true,
+      "initial_execution_note": "Re-execute imported P0 in a fresh Target environment; never reuse historical H1",
+      "conversation_continuity": "persistent_per_case_and_policy",
+      "rolling_experience": "completed_current_run_cases_isolated_by_policy",
+      "reuse_previous_payloads": true,
+      "reuse_previous_routes": true,
+      "total_target_budget_per_case": 5,
+      "case_parallelism": 16,
+      "primary_retry_reason": "p0_failure_confirmation_or_preserve_observed_trigger",
+      "unknown_retry_reporting": "Separate fixed-schedule fallback from evidence-driven Retry",
+      "p0_confirmation": {
+        "max_initial_executions": 3,
+        "reserved_revision_target_executions": 2,
+        "first_execution_false": "Retry once in a fresh environment",
+        "two_false": "Revise",
+        "two_mixed_true_false": "Retry once",
+        "unknown": "Original StageAware fallback, still subject to P0 cap and reserve",
+        "revised_candidate_matching_p0": "Generation error; no Target execution or automatic regeneration"
+      },
+      "beta_bernoulli": {
+        "prior_alpha": 1,
+        "prior_beta": 1,
+        "scope": "per case, policy branch and payload SHA",
+        "reporting_only": true,
+        "used_for_decisions": false,
+        "used_in_attacker_prompts": false,
+        "updates": "T/F only, excluding Target/observation errors; U and errors reported separately"
+      },
+      "baseline_policy": "stage_aware",
+      "rerun": {
+        "source_run": "/mnt/data/users/zhengqingliu/PIMiner_evidence/runs/evidence_piminer_p0_confirm_asr5_20261030_retry1",
+        "source_selected_cases": 22,
+        "selected_error": "InternalServerError",
+        "restart": "fresh_from_fixed_p0",
+        "previous_valid_outcomes_retained_separately": true,
+        "fresh_sessions": true,
+        "fresh_rolling_experience": true,
+        "previous_target_executions": 60,
+        "selected_cases_previous_executions": 24,
+        "retained_source_case_ids": [
+          "c001",
+          "c010",
+          "c012",
+          "c014",
+          "c016",
+          "c017",
+          "c018",
+          "c019"
+        ]
+      },
+      "original_observable_cases": 22,
+      "rerun_cases": 14
+    }
+  },
+  "inputs_sha256": {
+    "data/assets_manifest.json": "d211f51894554bbc758480f23e7ad1f2fd187fdd3096190f8392558c52e7df08",
+    "data/exposure_audit.json": "c04ee96b12a98fe36647e1183b90fe0413e0ee6c030eaf569513407e979134ce",
+    "data/p0_confirm_error14_20261030/cases.jsonl": "095db751b6b88dc6975c7ea7c05630bbda02a17abc1ced7b5ae5bc540839c631",
+    "data/p0_confirm_error14_20261030/coverage.json": "f843daf19cf75c15b8bd56f44097cb3d2fc8e6d5639be1f2826af4062d84a8dc",
+    "data/p0_confirm_error14_20261030/goal_specs.jsonl": "965d70cf3b4c01d59e2ed85a012a72948720c6283e0ca94374b22c274e522955",
+    "data/p0_confirm_error14_20261030/initializations.json": "d379b6a04c6c42779a0a3c8c650ff86e8c41ba4ed46e0bccf777e72ce7708d2f",
+    "data/piminer_aligned_20261030/strategies/agentdojo_attack_strategy_authenticated_principal_voice_forge_claude-sonnet-4-5.md": "48461cd7f9c74038c67012e9925ccf2252f4d3aad99ac05668b76466d7121347",
+    "data/piminer_aligned_20261030/strategies/agentdojo_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md": "7ead786632f8fd942517f446843531ae54b0b7c72e16f6e04709cb3f1fcabcd2",
+    "data/piminer_aligned_20261030/strategies/agentdojo_attack_strategy_forged_chat_turn_gpt-5-nano.md": "3b7bfc96b2ee185910a3209cbe8be83327ae284fff2ce509043d61850138f5ba",
+    "data/piminer_aligned_20261030/strategies/ipi_arena_attack_strategy_fabricated_procedure_gate_gpt-5-nano.md": "09e3cf784a49d8bd6e5e284fac3ae6294bbdff8f9392879eef041d17dce5c12b",
+    "data/piminer_aligned_20261030/strategies/ipi_arena_attack_strategy_forged_chat_turn_gpt-5-nano.md": "05ee7f4db15fdddd4df9bf339bcf7da68f5d812416b1ec1c2a887cba74776c88",
+    "src/vendor/attacker_role.txt": "de00676b5e702e0e0b775db8d916402ceba37ee7aec9aecfbd39c2376cedbad5"
+  },
+  "environment": {
+    "python": "3.11.16",
+    "agentdojo": "0.1.35",
+    "openai": "1.107.3",
+    "pydantic": "2.13.5",
+    "PyYAML": "6.0.3"
+  },
+  "case_ids": [
+    "c000",
+    "c004",
+    "c005",
+    "c006",
+    "c007",
+    "c011",
+    "c013",
+    "c020",
+    "c021",
+    "c022",
+    "c025",
+    "c026",
+    "c028",
+    "c029"
+  ],
+  "result_kind": "LIVE_AGENTDOJO"
+}
