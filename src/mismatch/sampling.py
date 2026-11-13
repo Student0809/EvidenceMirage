@@ -123,16 +123,27 @@ def run_sampling_branch(branch_path):
     """One branch: generate P0, execute it, then run the autonomous feedback loop."""
     folder = Path(branch_path)
     job = json.loads((folder / 'job_public.json').read_text())
-    if job.get('protocol') != PROTOCOL:
+    from ..evidence.task_sampling import PROTOCOL as TASK_PROTOCOL
+    task_mode = job.get('protocol') == TASK_PROTOCOL
+    if job.get('protocol') not in (PROTOCOL, TASK_PROTOCOL):
         raise ValueError('Sampling job protocol differs')
     if job.get('ablation_protocol') != ABLATION_PROTOCOL:
         raise ValueError('Legacy or missing ablation protocol; start a fresh sampling run')
     probe = job['mode'] == 'probe'
-    if job['view'] != VIEWS[job['mode']] or job.get('ablation') != GROUPS[job['mode']]:
+    if task_mode:
+        from ..evidence.task_sampling import SamplingContext as Context, validate_profile
+        if job['view'] != 'task_feedback' or job.get('ablation') not in ('G10', 'G11'):
+            raise ValueError('Task feedback view or history ablation differs')
+        template = validate_profile(job['profile'])
+        if template != job['target_config'].get('task_feedback') or 'nonce' in template:
+            raise ValueError('Frozen task feedback profile differs')
+        if job.get('feedback_visibility') not in ('visible', 'hidden'):
+            raise ValueError('Task feedback visibility must be explicit')
+    elif job['view'] != VIEWS[job['mode']] or job.get('ablation') != GROUPS[job['mode']]:
         raise ValueError('Sampling mode, view and base ablation conflict')
-    if probe and not isinstance(job['target_config'].get('probe_sampling'), dict):
+    if not task_mode and probe and not isinstance(job['target_config'].get('probe_sampling'), dict):
         raise ValueError('Probe mode requires a channel template')
-    if not probe and job['target_config'].get('probe_sampling') is not None:
+    if not task_mode and not probe and job['target_config'].get('probe_sampling') is not None:
         raise ValueError('No-probe mode must not carry a probe channel')
     modules = AssessmentModules(job['ablation'])
     configure()
@@ -169,12 +180,14 @@ def run_sampling_branch(branch_path):
 
     adapter.decide = tracked
     nonce_by_sha = {}
-    template = job['target_config'].get('probe_sampling') if probe else None
+    if not task_mode:
+        Context = SamplingContext
+        template = job['target_config'].get('probe_sampling') if probe else None
 
     def context_for_payload():
-        if template is None:
+        if template is None or not probe:
             return None
-        return SamplingContext(template, nonce())
+        return Context(template, nonce())
 
     original_revise = adapter.revise
 
@@ -194,7 +207,11 @@ def run_sampling_branch(branch_path):
 
     def persist(result):
         if result.ablation is not None:
-            result.ablation = _ablation(modules, job['mode'])
+            if task_mode:
+                from .task_sampling import ablation_metadata
+                result.ablation = ablation_metadata(modules, job['mode'], job['feedback_visibility'])
+            else:
+                result.ablation = _ablation(modules, job['mode'])
         write_json(folder / 'branch.json', asdict(result))
         active.update(status=result.status, target_attempts=result.target_attempts,
                       updated_at=stamp())
@@ -207,18 +224,24 @@ def run_sampling_branch(branch_path):
         # Validate before creating an execution or spending a Target API call.
         if probe:
             context.validate_payload(payload.text)
+        elif task_mode:
+            from ..evidence.task_sampling import validate_no_probe_payload as validate_task_control
+            validate_task_control(payload.text)
         else:
             validate_no_probe_payload(payload.text)
         execution = folder / 'executions' / f'{ordinal:02d}'
         execution.mkdir(parents=True, exist_ok=False)
         target_config = deepcopy(job['target_config'])
-        if probe:
+        if task_mode:
+            target_config['task_feedback'] = dict(template, nonce=context.nonce if context else nonce())
+        elif probe:
             target_config['probe_sampling'] = dict(target_config['probe_sampling'],
                                                    nonce=context.nonce)
+        projection = ('task_feedback' if job.get('feedback_visibility') == 'visible' else 'none') if task_mode else ('probe_receiver' if probe else 'none')
         request = dict(case=current.case, payload=asdict(payload),
                        target_config=target_config,
                        episode_id=f'{folder.name}/live/{ordinal}',
-                       feedback_projection='probe_receiver' if probe else 'none',
+                       feedback_projection=projection,
                        final_projection='text_only')
         write_json(execution / 'request_public.json', request)
         active.update(stage='target_execution', updated_at=stamp())
@@ -234,7 +257,13 @@ def run_sampling_branch(branch_path):
                                        current.analysis, response['final_output'],
                                        tuple(response['packets']), origin='target_execution',
                                        error=response['error'], episode_id=request['episode_id'])
-        if probe:
+        if task_mode:
+            from ..evidence.task_sampling import validate_public_packets
+            validate_public_packets(list(public_attempt.packets), target_config['task_feedback'],
+                                    episode_id=request['episode_id'])
+            if projection == 'none' and public_attempt.packets:
+                raise ValueError('Hidden feedback leaked packets')
+        elif probe:
             from ..evidence.probe_sampling import validate_public_probe_packets
             validate_public_probe_packets(list(public_attempt.packets), context.config,
                                           episode_id=request['episode_id'])
@@ -281,7 +310,7 @@ def run_sampling_branch(branch_path):
         _freeze(folder)
         return dict(branch=folder.name, status=result.status, target_attempts=1,
                     decisions=0, error_type=result.error_type, ablation=result.ablation)
-    result = FeedbackRunner(adapter, feedback_view=job['view'], target_budget=TARGET_BUDGET,
+    result = FeedbackRunner(adapter, feedback_view=job['view'], target_budget=job.get('budget', TARGET_BUDGET),
                             source=source, persist=persist,
                             initial_attempts=1).run(received)
     _freeze(folder)
@@ -395,6 +424,9 @@ def main(argv=None):
                      default=ROOT / 'data/mismatch_autonomous_20261104')
     run.add_argument('--selection', type=Path, required=True)
     run.add_argument('--channel', type=Path)
+    run.add_argument('--profiles', type=Path, help='Explicit per-seed task feedback registry; selects the all-seed protocol')
+    run.add_argument('--feedback-visibility', choices=('visible', 'hidden'))
+    run.add_argument('--repeats', type=positive_workers, default=1)
     run.add_argument('--output', type=Path, required=True)
     run.add_argument('--mode', choices=sorted(VIEWS), required=True)
     run.add_argument('--ablation', choices=sorted(set(GROUPS.values())))
@@ -405,16 +437,31 @@ def main(argv=None):
     score.add_argument('--output', type=Path, required=True)
     args = parser.parse_args(argv)
     if getattr(args, 'ablation', None) is None and hasattr(args, 'mode'):
-        args.ablation = GROUPS[args.mode]
+        args.ablation = 'G11' if args.profiles is not None else GROUPS[args.mode]
     if args.command == 'score':
-        from ..evaluation.probe_sampling import score_run
+        manifest = json.loads((args.run / 'manifest.json').read_text())
+        if manifest.get('protocol') == 'task_feedback_sampling_v1':
+            from ..evaluation.task_sampling import score_run
+        else:
+            from ..evaluation.probe_sampling import score_run
         result = score_run(args.run, args.output)
-        print(json.dumps({key: result[key] for key in (
+        keys = ('result_kind', 'mode', 'instances', 'report_delivery_rate',
+                'payment_event_visibility_rate', 'final_report_presence_rate',
+                'attack_success_at_budget', 'attack_success_rate') if manifest.get('protocol') == 'task_feedback_sampling_v1' else (
             'result_kind', 'mode', 'probe_candidates_executed',
             'query_induction_rate', 'legal_return_rate', 'joint_success_rate',
-            'attack_success_at_budget')}))
+            'attack_success_at_budget')
+        print(json.dumps({key: result.get(key) for key in keys}))
     else:
-        campaign(args)
+        if args.profiles is not None:
+            if args.channel is not None:
+                parser.error('--profiles and legacy --channel are mutually exclusive')
+            from .task_sampling import campaign as task_campaign
+            task_campaign(args)
+        else:
+            if args.feedback_visibility is not None or args.repeats != 1:
+                parser.error('Independent feedback visibility and repeats require --profiles')
+            campaign(args)
 
 
 if __name__ == '__main__':

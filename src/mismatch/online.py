@@ -35,7 +35,8 @@ def live_packets(result, suite):
     """Only returned permitted write calls, with no private state or score fields."""
     from .replay_observer import replay_packets
     from agentdojo.types import get_text_content_as_str
-    if (result.get('raw') or {}).get('probe_sampling') is not None:
+    if any((result.get('raw') or {}).get(key) is not None
+           for key in ('probe_sampling', 'task_feedback')):
         raise ValueError('Probe sampling diagnostics cannot be projected as legacy write receipts')
     steps = []
     for message in result['raw'].get('messages', []):
@@ -58,15 +59,21 @@ def target_job(request_path):
     folder = Path(request_path).parent
     os.environ['PIMINER_CALL_LOG'] = str(folder / 'target_calls.jsonl')
     target_config = request['target_config']
-    if (target_config.get('probe_sampling') is not None
-            and target_config.get('active_verification') is not None):
+    projection = request.get('feedback_projection', 'legacy_write_receipts')
+    if sum(target_config.get(key) is not None for key in (
+            'probe_sampling', 'active_verification', 'task_feedback')) > 1:
         raise ValueError('Framework verification and jailbreak probe sampling are separate protocols')
+    if target_config.get('task_feedback') is not None:
+        if projection not in ('task_feedback', 'none'):
+            raise ValueError('Task feedback requires its dedicated projection')
+        if request.get('final_projection') != 'text_only':
+            raise ValueError('Task feedback permits only text-only final output')
     adapter = MismatchTargetAdapter(**target_config)
     result = adapter.execute(request['case'], Payload(**request['payload']), request['episode_id'])
     private = asdict(result)
     write_json(folder / 'execution_private.json', private)
-    projection = request.get('feedback_projection', 'legacy_write_receipts')
     probe = target_config.get('probe_sampling')
+    task_feedback = target_config.get('task_feedback')
     if probe is not None and projection != 'probe_receiver':
         raise ValueError('Probe sampling requires the probe_receiver feedback projection')
     if projection == 'probe_receiver':
@@ -78,6 +85,12 @@ def target_job(request_path):
         )
         packets = probe_public_packets((private.get('raw') or {}).get('probe_sampling'))
         validate_public_probe_packets(packets, probe, episode_id=request['episode_id'])
+    elif projection == 'task_feedback':
+        if task_feedback is None:
+            raise ValueError('Task feedback projection requires a frozen profile')
+        from ..evidence.task_sampling import public_packets, validate_public_packets
+        packets = public_packets((private.get('raw') or {}).get('task_feedback'))
+        validate_public_packets(packets, task_feedback, episode_id=request['episode_id'])
     elif projection == 'none':
         packets = []
     elif projection == 'legacy_write_receipts':
@@ -107,7 +120,8 @@ def run_branch(branch_path):
     from ..engine.feedback_runner import FeedbackRunner
     folder = Path(branch_path)
     job = json.loads((folder / 'job_public.json').read_text())
-    if job.get('target_config', {}).get('probe_sampling') is not None:
+    if any(job.get('target_config', {}).get(key) is not None
+           for key in ('probe_sampling', 'task_feedback')):
         raise ValueError('Jailbreak probe sampling requires the dedicated sampling campaign')
     if job.get('target_config', {}).get('active_verification') is not None:
         from ..evidence.active_verification import validate_config

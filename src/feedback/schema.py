@@ -9,9 +9,10 @@ PROTOCOL = 'autonomous_mismatch_v1'
 PUBLIC_CASE_FIELDS = ('suite_name', 'user_task_id', 'injection_task_id',
                       'user_task_prompt', 'injection_task_goal',
                       'context_with_placeholder', 'injection_candidates')
-VIEWS = ('final_only', 'authorized_evidence', 'receiver_report_only')
+VIEWS = ('final_only', 'authorized_evidence', 'receiver_report_only', 'task_feedback')
 PACKET_SCOPES = {'authorized_evidence': 'returned_call_fields_only',
-                 'receiver_report_only': DELIVERY_SCOPE}
+                 'receiver_report_only': DELIVERY_SCOPE,
+                 'task_feedback': 'task_feedback'}
 
 
 def public_case(value):
@@ -34,6 +35,11 @@ def public_packets(packets):
             raise ValueError('Unexpected public packet fields')
         if packet['scope'] == DELIVERY_SCOPE:
             validate_public_packet(packet)
+            result.append(deepcopy(packet))
+            continue
+        if packet['scope'] == 'task_feedback':
+            from ..evidence.task_sampling import validate_public_packet as validate_task_packet
+            validate_task_packet(packet)
             result.append(deepcopy(packet))
             continue
         response = packet['response']
@@ -72,7 +78,8 @@ class PublicAttempt:
         object.__setattr__(self, 'case', public_case(self.case))
         object.__setattr__(self, 'packets', tuple(public_packets(self.packets)))
         report_episodes = {json.loads(packet['response']['evidence'])['episode_id']
-                           for packet in self.packets if packet['scope'] == DELIVERY_SCOPE}
+                           for packet in self.packets
+                           if packet['scope'] in (DELIVERY_SCOPE, 'task_feedback')}
         if len(report_episodes) > 1:
             raise ValueError('An attempt cannot mix Probe Episodes')
         if self.episode_id is None and report_episodes:

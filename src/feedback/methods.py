@@ -57,9 +57,10 @@ def revise_v1(adapter, attempt, history, decision, *, feedback_view, sampling=No
     # This episode deliberately has no gold attribute. Read packets through the
     # view so a receiver report can never cross into the replay-evidence arm.
     visible_packets = (attempt.view(feedback_view)['packets']
-                       if feedback_view in ('authorized_evidence', 'receiver_report_only')
+                       if feedback_view in ('authorized_evidence', 'receiver_report_only', 'task_feedback')
                        else [])
-    packets = [dict(query_id=p['query_id'], response=p['response'])
+    packets = [dict(query_id=p['query_id'], response=p['response'],
+                    scope=p['scope'], description=p['description'])
                for p in visible_packets]
     return adapter.generate(case, attempt.payload, episode, packets, f'P{len(history)}',
             strategy_document=attempt.strategy_document, final_output=attempt.final_output,

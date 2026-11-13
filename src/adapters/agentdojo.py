@@ -116,7 +116,7 @@ class AgentDojoAdapter:
     def __init__(self, model='gpt-5-nano', benchmark_version='v1.2.2', reasoning_effort=None,
                  base_url_env='OPENAI_BASE_URL', api_key_env='OPENAI_API_KEY',
                  request_timeout=120, max_tool_calls=30, pipeline=None, active_verification=None,
-                 probe_sampling=None):
+                 probe_sampling=None, task_feedback=None):
         import agentdojo.default_suites  # registers native suites
         from agentdojo.agent_pipeline.agent_pipeline import AgentPipeline, PipelineConfig
         from agentdojo.agent_pipeline.llms.openai_llm import OpenAILLM
@@ -129,13 +129,20 @@ class AgentDojoAdapter:
         self.llm = None
         self.active_verification = None
         self.probe_sampling = None
+        self.task_feedback = None
         if active_verification is not None:
             from ..evidence.active_verification import validate_config
             self.active_verification = validate_config(active_verification)
         if probe_sampling is not None:
             from ..evidence.probe_sampling import validate_channel_config
             self.probe_sampling = validate_channel_config(probe_sampling)
-        if self.active_verification is not None and self.probe_sampling is not None:
+        if task_feedback is not None:
+            from ..evidence.task_sampling import validate_profile
+            self.task_feedback = validate_profile(task_feedback)
+            if 'nonce' not in self.task_feedback:
+                raise ValueError('Target execution feedback requires an execution nonce')
+        if sum(value is not None for value in (
+                self.active_verification, self.probe_sampling, self.task_feedback)) > 1:
             raise ValueError('Framework verification and jailbreak probe sampling are separate protocols')
         self._http_stage = 'target_http'
         self.max_tool_calls = max_tool_calls
@@ -245,7 +252,18 @@ class AgentDojoAdapter:
             env = suite.load_and_inject_default_environment(injections)
             env = user.init_environment(env)
             pre = env.model_copy(deep=True)
-            collector = Collector.for_native_rollout(policy_for_case(case),
+            policy = None
+            if self.task_feedback is not None:
+                from ..evidence.task_sampling import profile_policy, validate_capabilities
+                from ..mismatch.tasks import identify
+                if (self.task_feedback['suite'] != case['suite_name']
+                        or self.task_feedback['seed_id'] != identify(case)):
+                    raise ValueError('Feedback profile identity differs from task')
+                validate_capabilities(self.task_feedback, {f.name for f in suite.tools}, plain(pre))
+                policy = profile_policy(self.task_feedback)
+            else:
+                policy = policy_for_case(case)
+            collector = Collector.for_native_rollout(policy,
                 benchmark_version=self.version, suite_name=case['suite_name'])
             tools = collector.wrap_tools(suite.tools)
             channel = None
@@ -280,6 +298,18 @@ class AgentDojoAdapter:
                 observation = collector.finish(final, rollout_complete=True)
             except Exception as exc:
                 observation_error = type(exc).__name__
+            if self.task_feedback is not None:
+                from ..evidence.task_sampling import TaskFeedbackChannel
+                feedback_channel = TaskFeedbackChannel(self.task_feedback, episode_id=episode_id)
+                try:
+                    raw['task_feedback'] = feedback_channel.report(
+                        observation, final_text=final,
+                        status='completed' if observation_error is None else 'observation_error')
+                except Exception as exc:
+                    # A projection failure cannot erase a completed native task score.
+                    observation_error = type(exc).__name__
+                    raw['task_feedback'] = feedback_channel.report(
+                        None, final_text=final, status='observation_error')
             result = TargetResult(gold=gold, utility=utility, final=final, observation=observation,
                                   observation_error=observation_error)
             from ..vendor.final_output import extract_final_output

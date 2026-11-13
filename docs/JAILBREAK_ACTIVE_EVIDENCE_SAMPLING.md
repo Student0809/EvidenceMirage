@@ -1,5 +1,7 @@
 # Jailbreak-based Active Evidence Sampling
 
+> 全 18 seed 的新实现使用 `--profiles` 和 `task_feedback_sampling_v1`，参见 [任务反馈采样](TASK_FEEDBACK_SAMPLING.md)。本文保留旧 S01 协议及冻结运行的说明。
+
 2026-11-12 更新：S01/G11 的候选策略升级为 `free_form_probe_v3`，Probe 目标改为本轮操作回执。传输格式仍为 `raw_probe_report_v2`，采样渠道协议名仍为 `jailbreak_active_evidence_sampling_v1`。它与框架经高信任指令发起的 `framework_assisted_target_verification_v2` 是两个不同实验条件。
 
 ## 协议路径

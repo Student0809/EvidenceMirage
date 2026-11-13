@@ -21,8 +21,9 @@ def inspect_run(source, include_generation):
         raise ValueError('Source must be a completed, frozen run')
     manifest = json.loads((source / 'manifest.json').read_text())
     from ..evidence.probe_sampling import PROTOCOL as SAMPLING_PROTOCOL
-    if (manifest.get('protocol') == SAMPLING_PROTOCOL
-            or manifest.get('target', {}).get('probe_sampling') is not None):
+    if (manifest.get('protocol') in (SAMPLING_PROTOCOL, 'task_feedback_sampling_v1')
+            or any(manifest.get('target', {}).get(key) is not None
+                   for key in ('probe_sampling', 'task_feedback'))):
         raise ValueError('Jailbreak probe sampling runs are not resumable under the legacy recovery protocol')
     if manifest.get('target', {}).get('active_verification') is not None:
         from ..evidence.active_verification import validate_config

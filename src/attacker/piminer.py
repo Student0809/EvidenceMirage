@@ -98,7 +98,7 @@ class PIMinerAdapter:
             if sampling is not None:
                 sampling.validate_payload(text)
             elif self.sampling_mode == 'no_probe':
-                from ..evidence.probe_sampling import validate_no_probe_payload
+                from ..evidence.task_sampling import validate_no_probe_payload
                 validate_no_probe_payload(text)
 
         try:
@@ -108,8 +108,8 @@ class PIMinerAdapter:
             sampling_block = None if sampling is None else sampling.prompt_block()
             candidate_block = sampling_block
             if self.sampling_mode == 'no_probe':
-                from ..evidence.probe_sampling import NO_PROBE_INSTRUCTIONS
-                candidate_block = NO_PROBE_INSTRUCTIONS
+                from ..evidence.task_sampling import NO_PROBE_INSTRUCTIONS, EPISODE_RESET_INSTRUCTIONS
+                candidate_block = NO_PROBE_INSTRUCTIONS + '\n' + EPISODE_RESET_INSTRUCTIONS
             if not isinstance(strategies, str) or not strategies.strip():
                 raise ValueError('Strategy document must be nonempty text')
             if final_output is not None and not isinstance(final_output, str):
@@ -169,15 +169,18 @@ class PIMinerAdapter:
                 memory = build_revision_memory(case, history, feedback_protocol=feedback_protocol)
                 probe_feedback = None
                 if sampling is not None:
-                    from ..evidence.probe_sampling import summarize_probe_feedback
-                    probe_feedback = summarize_probe_feedback(memory, sampling.config)
+                    if sampling.config.get('protocol') == 'task_feedback_sampling_v1':
+                        from ..evidence.task_sampling import summarize_feedback
+                    else:
+                        from ..evidence.probe_sampling import summarize_probe_feedback as summarize_feedback
+                    probe_feedback = summarize_feedback(memory, sampling.config)
                     memory['probe_feedback'] = probe_feedback
                     record['probe_feedback'] = probe_feedback
                 history = memory['attempts']
                 history[-1]['oracle_run_id'] = episode.episode_id
                 sample = dict(public, history=history)
                 definitions = {p['query_id']: (p['description']
-                    if p.get('scope') == 'authorized_receiver_delivery'
+                    if p.get('scope') in ('authorized_receiver_delivery', 'task_feedback')
                     else 'Authorized observed events, not complete goal truth.')
                     for p in packets}
                 context = project_context(sample, definitions, feedback_protocol=feedback_protocol)

@@ -12,7 +12,8 @@ from .plan_memory import project_plan_memory
 
 PROTOCOL = 'grounded_history_v1'
 OBSERVED_SCOPE = 'authorized_observed_events'
-PUBLIC_OBSERVATION_SCOPES = ('returned_call_fields_only', 'authorized_receiver_delivery')
+PUBLIC_OBSERVATION_SCOPES = ('returned_call_fields_only', 'authorized_receiver_delivery',
+                             'task_feedback')
 _STATES = ('T', 'F', 'U')
 
 
@@ -87,8 +88,18 @@ def _project_observation(observation, case_id, sha256, expected_policy, *, auton
             if autonomous:
                 if result.get('scope') not in PUBLIC_OBSERVATION_SCOPES or not isinstance(result.get('description'),str):
                     raise ValueError('Public observation requires receipt scope and description')
+                if result['scope'] == 'task_feedback':
+                    from ..evidence.task_sampling import validate_public_packet
+                    import json
+                    packet = dict(query_id=query_id, description=result['description'],
+                                  scope=result['scope'], response=response)
+                    validate_public_packet(packet)
+                    if json.loads(evidence)['episode_id'] != episode_id:
+                        raise ValueError('Task feedback belongs to another Episode')
                 item.update(scope=result['scope'],description=result['description'])
             query_results.append(item)
+    if autonomous and len({item['scope'] for item in query_results}) > 1:
+        raise ValueError('An observation cannot mix public feedback protocols')
     projected=dict(episode_id=episode_id, case_id=case_id, policy_id=policy_id,
                 payload_sha256=sha256, trigger='U' if error else trigger,
                 observation_error=error, predicates=projected,

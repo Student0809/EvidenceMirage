@@ -91,8 +91,9 @@ def score_run(run):
     if manifest_path.exists():
         manifest = json.loads(manifest_path.read_text())
         from ..evidence.probe_sampling import PROTOCOL as SAMPLING_PROTOCOL
-        if (manifest.get('protocol') == SAMPLING_PROTOCOL
-                or manifest.get('target', {}).get('probe_sampling') is not None):
+        if (manifest.get('protocol') in (SAMPLING_PROTOCOL, 'task_feedback_sampling_v1')
+                or any(manifest.get('target', {}).get(key) is not None
+                       for key in ('probe_sampling', 'task_feedback'))):
             raise ValueError('Jailbreak sampling runs require src.evaluation.probe_sampling')
     mapping = json.loads((run / 'selection_private.json').read_text())
     rows = []
