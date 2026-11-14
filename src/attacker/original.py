@@ -133,7 +133,13 @@ class OriginalPIMinerAdapter:
             prompt = '\n'.join(build_user_message_blocks(route['document'], public, visible,
                                                          threat_model='black_box'))
             if sampling is not None:
-                prompt += '\n' + sampling.prompt_block()
+                if sampling.config.get('protocol') == 'task_feedback_sampling_v1':
+                    plan = sampling.execution_plan(public)
+                    prompt += '\n' + sampling.prompt_block(public)
+                    if plan is not None:
+                        record['task_execution_plan'] = deepcopy(plan)
+                else:
+                    prompt += '\n' + sampling.prompt_block()
             profile = self.revision_profile if payload is not None else 'original'
             record['revision_profile'] = profile
             prompt = revision_prompt(prompt, profile)
@@ -147,6 +153,8 @@ class OriginalPIMinerAdapter:
             # Same fallback as the original submit command.
             if not injection.strip():
                 injection = output
+            if sampling is not None and sampling.config.get('execution_workflow') is not None:
+                sampling.validate_payload(injection)
             result = Payload(revision_id, injection)
             record.update(status='ready', analysis=analysis, payload=result.text, payload_sha256=result.sha256)
             return result, record

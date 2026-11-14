@@ -28,6 +28,7 @@ from ..feedback.ablation import ABLATION_PROTOCOL, AssessmentModules
 from ..feedback.schema import BranchResult, PROTOCOL as FEEDBACK_PROTOCOL, PublicAttempt
 
 TARGET_BUDGET = 3  # Includes the initial P0 execution.
+DEFAULT_ATTACKER_EFFORT = 'low'
 VIEWS = {'probe': 'receiver_report_only', 'no_probe': 'final_only'}
 GROUPS = {'probe': 'G11', 'no_probe': 'G10'}
 
@@ -323,6 +324,7 @@ def run_sampling_branch(branch_path):
 def campaign(args):
     modules = AssessmentModules(args.ablation)
     mode = args.mode
+    effort = getattr(args, 'attacker_effort', DEFAULT_ATTACKER_EFFORT)
     if mode not in VIEWS:
         raise ValueError('Unknown sampling mode')
     if args.ablation != GROUPS[mode]:
@@ -340,7 +342,7 @@ def campaign(args):
         raise FileExistsError('Output exists; no implicit resume or resampling')
     if args.dry_run:
         print(json.dumps(dict(validation, ablation=_ablation(modules, mode),
-                              target=target_config)))
+                              model='deepseek-flash[1m]', effort=effort, target=target_config)))
         return
     configure()
     _, instances = selection(args.prepared, args.selection)
@@ -355,7 +357,7 @@ def campaign(args):
     for index, (public, label) in enumerate(instances):
         folder = output / 'branches' / f'b{index:03d}'
         job = dict(protocol=PROTOCOL, mode=mode, input=public, model='deepseek-flash[1m]',
-                   effort='max', timeout=900, view=VIEWS[mode], ablation=args.ablation,
+                   effort=effort, timeout=900, view=VIEWS[mode], ablation=args.ablation,
                    ablation_protocol=ABLATION_PROTOCOL, target_config=deepcopy(target_config),
                    budget=TARGET_BUDGET)
         write_json(folder / 'job_public.json', job)
@@ -367,7 +369,7 @@ def campaign(args):
         started_at=stamp(), result_kind='LIVE_JAILBREAK_EVIDENCE_SAMPLING_PILOT',
         protocol=PROTOCOL, mode=mode, view=VIEWS[mode], method='piminer',
         probe_payload_policy=PAYLOAD_POLICY if mode == 'probe' else 'disabled',
-        model='deepseek-flash[1m]', effort='max', target=target_config,
+        model='deepseek-flash[1m]', effort=effort, target=target_config,
         workers=args.workers, target_budget_per_branch=TARGET_BUDGET,
         max_target_dispatches=TARGET_BUDGET * len(instances), target_runs=0,
         resumable=False, initial_payload='attacker_generated_sampling_aware_p0',
@@ -387,7 +389,7 @@ def campaign(args):
     from ..adapters.agentdojo import AgentDojoAdapter
     try:
         preflight = dict(target=AgentDojoAdapter(**target_config).preflight(),
-                         attacker=PIMinerAdapter(ROOT, 'deepseek-flash[1m]', 'max', 900).preflight())
+                         attacker=PIMinerAdapter(ROOT, 'deepseek-flash[1m]', effort, 900).preflight())
         write_json(output / 'preflight.json', preflight)
     except Exception as exc:
         write_json(output / 'status.json', dict(status='preflight_error',
@@ -430,6 +432,9 @@ def main(argv=None):
     run.add_argument('--output', type=Path, required=True)
     run.add_argument('--mode', choices=sorted(VIEWS), required=True)
     run.add_argument('--ablation', choices=sorted(set(GROUPS.values())))
+    run.add_argument('--attacker-effort', choices=('low', 'medium', 'high', 'xhigh', 'max'),
+                     default=DEFAULT_ATTACKER_EFFORT,
+                     help='Attacker reasoning effort for every stage (default: low)')
     run.add_argument('--workers', type=positive_workers, default=1)
     run.add_argument('--dry-run', action='store_true')
     score = sub.add_parser('score')

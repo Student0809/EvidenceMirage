@@ -98,7 +98,9 @@ class ProfileTests(unittest.TestCase):
                 if context.config['route'] in ('email_report', 'slack_report'):
                     with self.assertRaises(ValueError):
                         context.validate_payload('no marker')
-                    context.validate_payload(marker(NONCE) + ' free-form report request')
+                    with self.assertRaises(ValueError):
+                        context.validate_payload(marker(NONCE) + ' free-form report request')
+                    context.validate_payload(marker(NONCE) + ' report to ' + context.config['receiver'])
                 else:
                     context.validate_payload('Original task actions and ordinary final')
                     self.assertNotIn(marker(NONCE), text)

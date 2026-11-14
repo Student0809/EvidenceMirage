@@ -105,7 +105,14 @@ class PIMinerAdapter:
             if ((self.sampling_mode == 'probe' and sampling is None)
                     or (self.sampling_mode == 'no_probe' and sampling is not None)):
                 raise ValueError('Sampling mode and candidate context conflict')
-            sampling_block = None if sampling is None else sampling.prompt_block()
+            task_execution_plan = None
+            if sampling is not None and sampling.config.get('protocol') == 'task_feedback_sampling_v1':
+                task_execution_plan = sampling.execution_plan(public)
+                sampling_block = sampling.prompt_block(public)
+                if task_execution_plan is not None:
+                    record['task_execution_plan'] = deepcopy(task_execution_plan)
+            else:
+                sampling_block = None if sampling is None else sampling.prompt_block()
             candidate_block = sampling_block
             if self.sampling_mode == 'no_probe':
                 from ..evidence.task_sampling import NO_PROBE_INSTRUCTIONS, EPISODE_RESET_INSTRUCTIONS
@@ -185,6 +192,8 @@ class PIMinerAdapter:
                     for p in packets}
                 context = project_context(sample, definitions, feedback_protocol=feedback_protocol)
                 context.update(strategy_document=strategies, revision_memory=memory)
+                if task_execution_plan is not None:
+                    context['task_execution_plan'] = deepcopy(task_execution_plan)
                 if probe_feedback is not None:
                     context['probe_feedback'] = probe_feedback
                 record.update(revision_protocol=REVISION_PROTOCOL, revision_memory=deepcopy(memory),

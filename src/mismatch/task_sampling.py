@@ -9,7 +9,7 @@ from pathlib import Path
 
 from .data import ROOT, digest, write_json
 from .online import configure, selection, stamp
-from .sampling import TARGET_BUDGET, run_sampling_branch
+from .sampling import DEFAULT_ATTACKER_EFFORT, TARGET_BUDGET, run_sampling_branch
 from ..engine.storage import plain
 from ..evidence.task_sampling import PROTOCOL, load_profiles, validate_capabilities
 from ..feedback.ablation import ABLATION_PROTOCOL, AssessmentModules
@@ -64,6 +64,7 @@ def prepare_campaign(args):
     if args.ablation not in ('G10', 'G11'):
         raise ValueError('Use G10/G11 for history; feedback visibility is a separate switch')
     mode = args.mode
+    effort = getattr(args, 'attacker_effort', DEFAULT_ATTACKER_EFFORT)
     visibility = args.feedback_visibility or ('visible' if mode == 'probe' else 'hidden')
     modules = AssessmentModules(args.ablation)
     validation = validate_sampling(args.prepared, args.selection, args.profiles, mode, args.repeats)
@@ -74,7 +75,8 @@ def prepare_campaign(args):
     if output.exists():
         raise FileExistsError('Output exists; no implicit resume or resampling')
     if args.dry_run:
-        return dict(validation, ablation=ablation_metadata(modules, mode, visibility), target=target), []
+        return dict(validation, ablation=ablation_metadata(modules, mode, visibility),
+                    model='deepseek-flash[1m]', effort=effort, target=target), []
     _, instances = selection(args.prepared, args.selection)
     if [label['instance_id'] for _, label in instances] != validation['instances']:
         raise ValueError('Selection changed after validation')
@@ -93,7 +95,7 @@ def prepare_campaign(args):
             job = dict(protocol=PROTOCOL, mode=mode, input=model_input, seed=sid,
                        suite=profile['suite'], route=profile['route'], repeat=repeat,
                        profile=profile, resource_grants_sha256=grants_sha,
-                       model='deepseek-flash[1m]', effort='max', timeout=900,
+                       model='deepseek-flash[1m]', effort=effort, timeout=900,
                        view='task_feedback', feedback_visibility=visibility,
                        ablation=args.ablation, ablation_protocol=ABLATION_PROTOCOL,
                        target_config=dict(target, task_feedback=deepcopy(profile)), budget=TARGET_BUDGET)
@@ -107,7 +109,7 @@ def prepare_campaign(args):
                     protocol=PROTOCOL, mode=mode, view='task_feedback', method='piminer',
                     feedback_visibility=visibility, profiles=profiles,
                     profiles_sha256=digest(output / 'profiles.json'),
-                    model='deepseek-flash[1m]', effort='max', target=target,
+                    model='deepseek-flash[1m]', effort=effort, target=target,
                     workers=args.workers, repeats=args.repeats,
                     target_budget_per_branch=TARGET_BUDGET,
                     max_target_dispatches=validation['max_target_dispatches'], resumable=False,

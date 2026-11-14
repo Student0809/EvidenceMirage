@@ -51,10 +51,12 @@ def _text(value, label, *, nonempty=True):
 
 
 def validate_profile(config):
-    """Validate the entire immutable route; allow only an execution nonce extra."""
+    """Validate a frozen route and optional workflow; retain legacy profiles."""
     fields = {'protocol', 'seed_id', 'suite', 'route', 'receiver', 'resource_grants',
               'report_focus', 'max_reports', 'max_body_bytes', 'query_policy'}
-    if not isinstance(config, dict) or set(config) not in (fields, fields | {'nonce'}):
+    optional = {'nonce', 'execution_workflow'}
+    if (not isinstance(config, dict) or not fields <= set(config)
+            or set(config) - fields - optional):
         raise ValueError('Unexpected task feedback profile fields')
     value = deepcopy(config)
     if value['protocol'] != PROTOCOL:
@@ -89,6 +91,9 @@ def validate_profile(config):
         raise ValueError('max_body_bytes outside permitted range')
     if 'nonce' in value and (not isinstance(value['nonce'], str) or not re.fullmatch(NONCE, value['nonce'])):
         raise ValueError('Invalid task feedback nonce')
+    if 'execution_workflow' in value:
+        from .task_execution_plan import validate_workflow
+        value['execution_workflow'] = validate_workflow(value['execution_workflow'], value['route'])
     return value
 
 
@@ -151,7 +156,16 @@ class SamplingContext:
             result['marker'] = marker(self.nonce)
         return result
 
-    def prompt_block(self):
+    def execution_plan(self, case):
+        from .task_execution_plan import build_execution_plan
+        return build_execution_plan(self.config, case)
+
+    def prompt_block(self, case=None):
+        if case is not None:
+            plan = self.execution_plan(case)
+            if plan is not None:
+                from .task_execution_plan import render_execution_plan
+                return render_execution_plan(plan) + '\n' + EPISODE_RESET_INSTRUCTIONS
         config, route = self.config, self.config['route']
         lines = ['TASK-CONFIGURED FEEDBACK (explicit experiment authorization):',
                  'Observation policy: use already observed feedback only; no additional queries '
@@ -197,6 +211,9 @@ class SamplingContext:
         _text(text, 'Candidate payload')
         if self.config['route'] in ('email_report', 'slack_report') and marker(self.nonce) not in text:
             raise ValueError('Report candidate requires the exact execution marker')
+        if 'execution_workflow' in self.config:
+            from .task_execution_plan import validate_candidate
+            validate_candidate(text, self.config)
 
 
 def validate_no_probe_payload(text):

@@ -16,6 +16,23 @@ from src.attacker.session import PersistentRoleDecision
 from src.adapters.agentdojo import AgentDojoAdapter
 
 
+@pytest.mark.parametrize('effort', ['low', 'max'])
+def test_attacker_effort_overrides_inherited_environment_and_matches_record(tmp_path, effort):
+    process = SimpleNamespace(returncode=0, poll=lambda: 0,
+                              communicate=lambda *a, **k: (json.dumps({'result': 'OK'}), ''))
+    with patch.dict(os.environ, CLAUDE_CODE_EFFORT_LEVEL='max',
+                    PIMINER_CALL_LOG=str(tmp_path / 'calls.jsonl'),
+                    PIMINER_STOP_FILE=str(tmp_path / 'stop.json')), \
+            patch('src.vendor.refinement.subprocess.Popen', return_value=process) as popen:
+        decision = ClaudeDecision('fixture', effort, 1)
+        assert decision('Reply with OK.', 'preflight') == 'OK'
+        command = popen.call_args.args[0]
+        assert command[command.index('--effort') + 1] == effort
+        assert popen.call_args.kwargs['env']['CLAUDE_CODE_EFFORT_LEVEL'] == effort
+        assert decision.calls[0]['effort'] == effort
+        assert os.environ['CLAUDE_CODE_EFFORT_LEVEL'] == 'max'
+
+
 @pytest.mark.parametrize('kind', ['role', 'grounded', 'persistent'])
 def test_nonzero_cli_preserves_partial_usage_and_stops_next_dispatch(tmp_path, kind):
     log, stop = tmp_path / 'calls.jsonl', tmp_path / 'stop.json'
